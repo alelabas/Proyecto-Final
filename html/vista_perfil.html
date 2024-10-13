@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos.css">
+    <title>ServiNow - Perfil de Usuario</title>
+</head>
+<body>
+    <header>
+        <nav class="navegador">
+            <a href="../index.html"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
+            <ul class="lista">
+                <li><a href="../html/vista_reservar_turno.html">Reservar Turno</a></li>
+                <li><a href="../html/vista_turnos_asignados.html">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.html">Mis Vehículos</a></li>
+                <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <article class="pag_principal">
+        <h1>Perfil de Usuario</h1>
+        <p>Aquí puedes personalizar tu información de perfil</p>
+        
+        <section class="perfil-usuario">
+            <form class="formulario-perfil">
+                <div class="campo-formulario">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="Juan">
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" value="Pérez">
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" value="juan.perez@example.com">
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" value="Calle Falsa 123">
+                </div>
+                
+                <button type="submit" class="boton-guardar">Guardar Cambios</button>
+            </form>
+        </section>
+    </article>
+    
+    <footer>
+        <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+</body>
+</html>
