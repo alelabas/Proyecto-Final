@@ -117,7 +117,7 @@ footer {
     color: #ecf0f1;
     text-align: center;
     padding: 1rem;
-    margin-top: 2rem;
+    margin-top: auto;
 }
 .concesionarios {
     display: flex;
@@ -327,3 +327,63 @@ footer {
 .boton-guardar:hover {
     background-color: #45a049;
 }
+
+.contenedor-formulario {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-formulario {
+    margin-bottom: 15px;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo-formulario input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.boton-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.boton-submit:hover {
+    background-color: #45a049;
+}
+
+.contenedor-formulario p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.contenedor-formulario a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.contenedor-formulario a:hover {
+    text-decoration: underline;
+}
+

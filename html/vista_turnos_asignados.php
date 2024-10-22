@@ -1,20 +1,21 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/estilos.css">
+    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
     <title>ServiNow - Turnos Asignados</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <a href="/index.html"><img id="inicio" src="/img/icono.webp" alt="ServiNow" height="80"></a>
+            <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-                <li><a href="/html/vista_reservar_turno.html">Reservar Turno</a></li>
-                <li><a href="/html/vista_turnos_asignados.html">Turnos Asignados</a></li>
-                <li><a href="/html/vista_mis_vehiculos.html">Mis Vehículos</a></li>
-                <li><a href="/html/vista_perfil.html"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
