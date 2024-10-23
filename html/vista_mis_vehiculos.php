@@ -45,9 +45,36 @@
                 <h3>Agregar Nuevo Vehículo</h3>
                 <a href="#" class="boton-agregar">Agregar</a>
             </div>
+        <!-- Ventana modal para agregar vehículo -->
+         <dialog>
+            <div id="modal-agregar-vehiculo" class="modal">
+                <div class="modal-contenido">
+                    <span class="cerrar">&times;</span>
+                    <h2>Agregar Nuevo Vehículo</h2>
+                    <form id="form-agregar-vehiculo">
+                        <div class="campo-formulario">
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca" name="marca" required>
+                        </div>
+                        <div class="campo-formulario">
+                            <label for="modelo">Modelo:</label>
+                            <input type="text" id="modelo" name="modelo" required>
+                        </div>
+                        <div class="campo-formulario">
+                            <label for="anio">Año:</label>
+                            <input type="number" id="anio" name="anio" required>
+                        </div>
+                        <div class="campo-formulario">
+                            <label for="patente">Patente:</label>
+                            <input type="text" id="patente" name="patente" required>
+                        </div>
+                        <button type="submit" class="boton-guardar">Guardar Vehículo</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
         </section>
     </article>
-    
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
