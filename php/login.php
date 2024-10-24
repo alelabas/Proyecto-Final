@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start();?>
 <!doctype html>
 <html>
     <head>
@@ -14,7 +14,7 @@
 
             include("conexion.php");
 
-            $consulta = mysqli_query($conexion, "SELECT NOMBRES, APELLIDOS, CORREO_ELECTRONICO, TELEFONO FROM CLIENTE WHERE USUARIO = '$usuario' AND CONTRASEÑA ='$contraseña'");
+            $consulta = mysqli_query($conexion, "SELECT CODIGO_CLIENTE, NOMBRES, APELLIDOS, CORREO_ELECTRONICO, TELEFONO FROM CLIENTE WHERE USUARIO = '$usuario' AND CONTRASEÑA ='$contraseña'");
             $resultado = mysqli_num_rows($consulta);
 
             if ($resultado != 0)
@@ -27,6 +27,7 @@
                 $_SESSION['telefono'] = $respuesta['TELEFONO'];
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['contraseña'] = $contraseña;
+                $_SESSION['id'] = $respuesta['CODIGO_CLIENTE'];
                 
                 include("C:\\xampp\htdocs\Proyecto Final\html\\vista_usuario.php");
             }
