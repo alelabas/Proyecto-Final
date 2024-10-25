@@ -32,9 +32,9 @@
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
         // de la vista de todos los concesionarios cuando se seleccione el boton modificar (o similar) que guarde el codigo en una variable de sesion.
-        $codigo = $_SESSION['codigo'];
+        // $codigo = $_SESSION['codigo'];
         // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
-        $consulta = mysqli_query($conexion, "SELECT NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
+        $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO");
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">

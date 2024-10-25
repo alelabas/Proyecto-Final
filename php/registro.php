@@ -17,7 +17,7 @@
             include("conexion.php");
 
             $_SESSION['usuario'] = $usuario;
-            $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono')");
+            $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'USUARIO')");
 
             header("Location:http://localhost/Proyecto%20Final/html/vista_iniciar_sesion.html");
         ?>
