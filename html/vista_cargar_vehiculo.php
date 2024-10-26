@@ -31,19 +31,19 @@
                 <input type='hidden' name='codigo' value="<?php echo $_POST['codigo']?>">
                 <div class="campo-formulario">
                     <label for="marca">Marca:</label>
-                    <input type="text" id="marca" name="marca" value="">
+                    <input type="text" id="marca" name="marca" value="" required>
                 </div>
                 <div class="campo-formulario">
                     <label for="modelo">Modelo:</label>
-                    <input type="text" id="modelo" name="modelo" value="">
+                    <input type="text" id="modelo" name="modelo" value="" required>
                 </div>
                  <div class="campo-formulario">
                     <label for="patente_new">Patente:</label>
-                    <input type="text" id="patente_new" name="patente_new" value="">
+                    <input type="text" id="patente_new" name="patente_new" value="" required>
                 </div>
                 <div class="campo-formulario">
                     <label for="anio">Año:</label>
-                    <input type="text" id="anio" name="anio" value="">
+                    <input type="text" id="anio" name="anio" value="" required>
                 </div>
                 <button type="submit" class="boton-guardar">Agregar</button>
 
@@ -52,5 +52,6 @@
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
 </html>

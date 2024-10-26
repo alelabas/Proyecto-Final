@@ -16,7 +16,6 @@
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_turnos.php">Turnos</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -35,12 +34,23 @@
                 while($fila = mysqli_fetch_array($consulta)) {
                     $_SESSION['codigo'] = $fila['CODIGO_CONCESIONARIO'];
                     echo "<div class='tarjeta-concesionario'>";
-                    echo "'<img src='http://localhost/Proyecto%20Final/img/concesionario1.jpg' alt='Concesionario 1'>";
                     echo "<h3>" . $fila['NOMBRE'] . "</h3>";
                     echo "<p><strong>Direccion:</strong> " . $fila['DIRECCION'] . "</p>";
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
                     echo "<p><strong>Telefono:</strong> " . $fila['TELEFONO'] . "</p>";
-                    echo "<a href='http://localhost/Proyecto%20Final/html/vista_concesionario.php' class='boton-reservar'>Modificar concesionario</a> </div>";
+                    
+                    echo "<form action='http://localhost/Proyecto%20Final/php/vista_turnos_admin.php' method='POST'>";
+                    echo "<div class='campo-formulario'> ";
+                    echo "<a href='http://localhost/Proyecto%20Final/html/vista_concesionario.php' class='boton-reservar'>Modificar concesionario</a> ";
+                    echo "</div>";
+                    echo "<div class='campo-formulario'> ";
+                    echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";
+                    echo "<input type='hidden' name='nombre' value='" . $fila['NOMBRE'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Ver turnos</button>";
+                    echo "</div>";
+                    echo "</form>";
+                    
+                    echo "</div>";
                 } 
             }
             else {

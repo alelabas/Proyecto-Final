@@ -20,7 +20,6 @@
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_turnos.php">Turnos</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -31,9 +30,7 @@
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        // de la vista de todos los concesionarios cuando se seleccione el boton modificar (o similar) que guarde el codigo en una variable de sesion.
         $codigo = $_SESSION['codigo'];
-        // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
         $consulta = mysqli_query($conexion, "SELECT NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
         ?>
@@ -41,30 +38,32 @@
             <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_concesionario.php" method="post">
                 <div class="campo-formulario">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRE']?>">
+                    <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRE']?>" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="direccion">Direccion:</label>
-                    <input type="text" id="direccion" name="direccion" value="<?php echo $resultado['DIRECCION']?>">
+                    <input type="text" id="direccion" name="direccion" value="<?php echo $resultado['DIRECCION']?>" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>">
+                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="direccion">Telefono:</label>
-                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>">
+                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
                 </div>
                 
-                <button type="submit" class="boton-guardar">Guardar Cambios</button>
+                <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
+                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Concesionario</button>            
             </form>
         </section>
     </article>
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
 </html>
