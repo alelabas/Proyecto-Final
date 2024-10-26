@@ -55,6 +55,7 @@
                 </div>
                 
                 <button type="submit" class="boton-guardar">Guardar Cambios</button>
+                <a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar Sesion</a>
             </form>
         </section>
     </article>

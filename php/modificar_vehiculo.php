@@ -25,18 +25,16 @@
             {
                 $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET PATENTE = '$patente_new',MARCA = '$marca', MODELO = '$modelo', ANIO = '$anio' WHERE PATENTE = '$patente'");
                 echo "Cambios realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
             }
             else 
             {
                 echo "Cambios no realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
             }
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM VEHICULO WHERE PATENTE = '$patente'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
         }
+        include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes_admin.php");
     ?>
 
     </body>

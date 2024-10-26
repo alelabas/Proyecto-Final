@@ -1,7 +1,6 @@
-<?if (session_status() === PHP_SESSION_NONE) {
+<?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }?>
-<!-- Vista para el admin -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +17,9 @@
                 <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow"  height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>        
         </nav>
     </header>
@@ -33,7 +31,7 @@
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
         $codigo = $_POST['codigo'];
         ?>
-        <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_turno_admin.php" method="post">
+        <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_turno.php" method="post">
                 <input type='hidden' name='codigo' value="<?php echo $codigo?>">
                 <div class="campo-formulario">
                 <label for="opciones">Selecciona un mantenimiento:</label>

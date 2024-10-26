@@ -28,18 +28,16 @@
             {
                 $consulta = mysqli_query($conexion, "UPDATE CLIENTE SET NOMBRES = '$nombres',APELLIDOS = '$apellidos', USUARIO = '$usuario', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono, CONTRASEÑA = $contraseña WHERE CODIGO_CLIENTE = '$codigo'");
                 echo "Cambios realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
             }
             else 
             {
                 echo "Cambios no realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
             }
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM CLIENTE WHERE CODIGO_CLIENTE = '$codigo'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
         }
+        include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes_admin.php");
     ?>
 
     </body>

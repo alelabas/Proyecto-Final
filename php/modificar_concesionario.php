@@ -26,13 +26,13 @@
             {
                 $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono WHERE CODIGO_CONCESIONARIO = '$codigo'");
                 echo "Cambios realizados correctamente";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
             }
             else 
             {
                 echo "Cambios no realizados";
                
             }
+            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'");

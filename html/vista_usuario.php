@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php @session_start()?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,6 +41,12 @@
             <h2>Mis Vehículos</h2>
             <p>Administra la información de tus vehículos registrados.</p>
           
+        </section>
+
+        <section class="servicios">
+            <h2>Contactanos</h2>
+            <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
+            <a href="http://localhost/Proyecto%20Final/html/contacto.php">Contactar</a>
         </section>
     </article>
     
