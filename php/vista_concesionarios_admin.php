@@ -14,10 +14,9 @@
         <nav class="navegador">
             <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -41,7 +40,7 @@
                     
                     echo "<form action='http://localhost/Proyecto%20Final/php/vista_turnos_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
-                    echo "<a href='http://localhost/Proyecto%20Final/html/vista_concesionario.php' class='boton-reservar'>Modificar concesionario</a> ";
+                    echo "<a href='http://localhost/Proyecto%20Final/html/vista_concesionario_admin.php' class='boton-reservar'>Modificar concesionario</a> ";
                     echo "</div>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";

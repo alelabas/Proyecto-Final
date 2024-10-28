@@ -18,6 +18,7 @@
             $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO) VALUES ('$nombre', '$direccion', '$telefono', '$email')");
             // Suponiendo que la pagina de vistas de los concesionarios del administrador se llame asi, sino renombrar el link.
             header("Location:http://localhost/Proyecto%20Final/php/vista_concesionarios.php");
+            //header("Location:http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php");
         ?>
     </body>
 </html>

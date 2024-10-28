@@ -1,7 +1,6 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }?>
-<!-- VISTA PARA EL ADMIN DE UN CONCESIONARIO ESPECIFICO Y SUS DATOS-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +17,9 @@
                 <a href="http://localhost/Proyecto%20Final/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -30,36 +28,39 @@
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        // de la vista de todos los concesionarios cuando se seleccione el boton modificar (o similar) que guarde el codigo en una variable de sesion.
-        // $codigo = $_SESSION['codigo'];
-        // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
-        $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO");
+        $codigo = $_POST['codigo'];
+        $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE CODIGO_CLIENTE = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">
-            <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_concesionario.php" method="post">
+            <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_cliente.php" method="post">
+                <input type='hidden' name='codigo' value="<?php echo $resultado['CODIGO_CLIENTE']?>" >
                 <div class="campo-formulario">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRE']?>" required>
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario" value="<?php echo $resultado['USUARIO']?>" required>
                 </div>
-                
                 <div class="campo-formulario">
-                    <label for="direccion">Direccion:</label>
-                    <input type="text" id="direccion" name="direccion" value="<?php echo $resultado['DIRECCION']?>" required>
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" id="nombres" name="nombres" value="<?php echo $resultado['NOMBRES']?>" required>
                 </div>
-                
+                 <div class="campo-formulario">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" value="<?php echo $resultado['APELLIDOS']?>" required>
+                </div>
                 <div class="campo-formulario">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>" required>
                 </div>
-                
                 <div class="campo-formulario">
                     <label for="direccion">Telefono:</label>
                     <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
                 </div>
-                
+                <div class="campo-formulario">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" value="<?php echo $resultado['CONTRASEÑA']?>" required>
+                </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
-                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Concesionario</button>            
+                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Perfil</button>
             </form>
         </section>
     </article>

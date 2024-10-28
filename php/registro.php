@@ -18,8 +18,12 @@
 
             $_SESSION['usuario'] = $usuario;
             $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'USUARIO')");
-
-            header("Location:http://localhost/Proyecto%20Final/html/vista_iniciar_sesion.html");
+            if($_POST['tipo_usuario'] == 'ADMIN'){
+                header("Location:http://localhost/Proyecto%20Final/php/vista_clientes_admin.php");
+            }
+            else{
+                header("Location:http://localhost/Proyecto%20Final/html/vista_iniciar_sesion.html");
+            }
         ?>
     </body>
 </html>

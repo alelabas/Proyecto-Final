@@ -14,10 +14,9 @@
         <nav class="navegador">
             <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>

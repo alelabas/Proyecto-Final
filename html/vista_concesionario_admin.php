@@ -18,10 +18,9 @@
                 <a href="http://localhost/Proyecto%20Final/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -30,10 +29,8 @@
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        // de la vista de todos los concesionarios cuando se seleccione el boton modificar (o similar) que guarde el codigo en una variable de sesion.
-        // $codigo = $_SESSION['codigo'];
-        // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
-        $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO");
+        $codigo = $_SESSION['codigo'];
+        $consulta = mysqli_query($conexion, "SELECT NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">

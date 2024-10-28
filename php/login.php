@@ -1,5 +1,6 @@
-<?php session_start();?>
-<!doctype html>
+<?if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}?><!doctype html>
 <html>
     <head>
         <title>Login de usuarios</title>

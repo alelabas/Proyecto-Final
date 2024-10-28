@@ -1,7 +1,6 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }?>
-<!-- Vista para el admin -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +17,9 @@
                 <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow"  height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>        
         </nav>
     </header>
@@ -29,6 +27,7 @@
         <h1>Nuevo vehiculo</h1>
         <form action="http://localhost/Proyecto%20Final/php/cargar_vehiculo.php" method="post" class="formulario-login">
                 <input type='hidden' name='codigo' value="<?php echo $_POST['codigo']?>">
+                <input type='hidden' name='tipo_usuario' value="ADMIN">
                 <div class="campo-formulario">
                     <label for="marca">Marca:</label>
                     <input type="text" id="marca" name="marca" value="" required>
@@ -38,8 +37,8 @@
                     <input type="text" id="modelo" name="modelo" value="" required>
                 </div>
                  <div class="campo-formulario">
-                    <label for="patente_new">Patente:</label>
-                    <input type="text" id="patente_new" name="patente_new" value="" required>
+                    <label for="patente">Patente:</label>
+                    <input type="text" id="patente" name="patente" value="" required>
                 </div>
                 <div class="campo-formulario">
                     <label for="anio">Año:</label>

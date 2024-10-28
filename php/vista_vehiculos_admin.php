@@ -1,7 +1,6 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }?>
-<!-- VISTA DEL ADMIN -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,10 +14,9 @@
         <nav class="navegador">
             <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow"  height="80"></a>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -44,7 +42,7 @@
                         echo "<p><strong>Año:</strong> " . $fila['ANIO'] . "</p>";
                         echo "<p><strong>Patente:</strong> " . $fila['PATENTE'] . "</p>";
                         
-                        echo "<form action='http://localhost/Proyecto%20Final/html/vista_vehiculo.php' method='POST'>";
+                        echo "<form action='http://localhost/Proyecto%20Final/html/vista_vehiculo_admin.php' method='POST'>";
                         echo "<div class='campo-formulario'> ";
                         echo "<input type='hidden' name='patente' value='" . $fila['PATENTE'] . "'>";
                         echo "<button type='submit' class='boton-reservar'>Modificar vehiculo</button>";
@@ -60,7 +58,7 @@
              <div class="tarjeta-vehiculo nuevo-vehiculo">
                 <i class="fa-solid fa-plus"></i>
                 <h3>Agregar Nuevo Vehiculo</h3>
-                <form action='http://localhost/Proyecto%20Final/html/vista_cargar_vehiculo.php' method='POST'>
+                <form action='http://localhost/Proyecto%20Final/html/vista_cargar_vehiculo_admin.php' method='POST'>
                         <input type='hidden' name='codigo' value="<?php echo $codigo?>">
                         <button type='submit' class='boton-agregar'>Agregar</button>
                 </form>
