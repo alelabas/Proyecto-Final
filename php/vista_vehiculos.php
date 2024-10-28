@@ -45,10 +45,8 @@
                         echo "<p><strong>Patente:</strong> " . $fila['PATENTE'] . "</p>";
                         
                         echo "<form action='http://localhost/Proyecto%20Final/html/vista_vehiculo.php' method='POST'>";
-                        echo "<div class='campo-formulario'> ";
                         echo "<input type='hidden' name='patente' value='" . $fila['PATENTE'] . "'>";
                         echo "<button type='submit' class='boton-reservar'>Modificar vehiculo</button>";
-                        echo "</div>";
                         echo "</form>";
                         echo "</div>";
                     } 

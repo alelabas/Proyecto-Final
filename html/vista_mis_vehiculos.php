@@ -66,7 +66,6 @@
                     <span class="cerrar-modal">&times;</span>
                     <h2>Agregar Nuevo Vehículo</h2>
                     <form id="formularioAgregarVehiculo" class="formulario-login" action="http://localhost/Proyecto%20Final/php/agregar_vehiculo.php" method="post">
-                   <!-- <form id="formularioAgregarVehiculo" class="formulario-login" action="http://localhost/Proyecto%20Final/php/cargar_vehiculo.php" method="post">-->
                         <div class="campo-formulario">
                             <label for="marca">Marca:</label>
                             <input type="text" id="marca" name="marca" required>

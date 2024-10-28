@@ -16,6 +16,7 @@
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_turnos.php">Turnos</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -24,36 +25,54 @@
     
     <article class="pag_principal">
         <h1>Clientes</h1>
-        <section class="concesionarios"> 
-        <input type="text" id="buscar" onkeyup="buscarCliente()" placeholder="Buscar" class="tarjeta-concesionario">
-        </section>
-        <section class="concesionarios"> 
-            <div id="resultado" class="concesionarios">
-                <!-- Aquí se cargarán los resultados -->
-            </div>
-        </section>
+        <section class="concesionarios">   
+            <?php
+            $i = 0;
+            include("conexion.php");
+            $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE ");
+            $resultado = mysqli_num_rows($consulta);
+            if ($resultado != 0) {
+                while($fila = mysqli_fetch_array($consulta)) {
+                    echo "<div class='tarjeta-concesionario'>";
+                    echo "<h3>" . $fila['USUARIO'] . "</h3>";
+                    echo "<p><strong>Nombres:</strong> " . $fila['NOMBRES'] . "</p>";
+                    echo "<p><strong>Apellidos:</strong> " . $fila['APELLIDOS'] . "</p>";
+                    echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
+                    echo "<p><strong>Telefono:</strong> " . $fila['TELEFONO'] . "</p>";
+                    //modificar el link a la vista de vehiculos y turnos segun este el archivo.
+                    echo "<form action='http://localhost/Proyecto%20Final/php/vista_vehiculos.php' method='POST'>";
+                    echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
+                    echo "<input type='hidden' name='usuario' value='" . $fila['USUARIO'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Ver vehiculos</button>";
+                    echo "</form>";
+
+                    echo "<form action='http://localhost/Proyecto%20Final/html/vista_turnos.php' method='POST'>";
+                    echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Ver turnos</button>";
+                    echo "</form>";
+
+                    echo "<form action='http://localhost/Proyecto%20Final/html/vista_cliente.php' method='POST'>";
+                    echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Modificar cliente</button>";
+                    echo "</form>";
+                    echo "</div>";
+                } 
+            }
+            else {
+                echo "0 resultados";
+            }
+        ?>
+         <div class="tarjeta-vehiculo nuevo-vehiculo">
+                <i class="fa-solid fa-plus"></i>
+                <h3>Agregar Nuevo Cliente</h3>
+                <a href="http://localhost/Proyecto%20Final/html/vista_cargar_cliente.php" class="boton-agregar">Agregar</a>
+        </div>
+        <section>
     </article>
     
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
-    <script>
-        function buscarCliente() {
-            // Obtener el valor del input
-            let buscar = document.getElementById("buscar").value;
-
-            // Crear una solicitud AJAX
-            let xhr = new XMLHttpRequest();
-            xhr.open("GET", "buscar.php?buscar=" + encodeURIComponent(buscar), true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Actualizar el contenido de la tabla con los resultados
-                    document.getElementById("resultado").innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-    </script>
 </body>
 </html>

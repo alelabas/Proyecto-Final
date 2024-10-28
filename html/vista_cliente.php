@@ -1,6 +1,7 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }?>
+<!-- VISTA PARA EL ADMIN DE UN CONCESIONARIO ESPECIFICO Y SUS DATOS-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,7 @@
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_turnos.php">Turnos</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -29,36 +31,38 @@
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
+        // de la vista de todos los concesionarios cuando se seleccione el boton modificar (o similar) que guarde el codigo en una variable de sesion.
         $codigo = $_POST['codigo'];
+        // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
         $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE CODIGO_CLIENTE = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">
             <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_cliente.php" method="post">
-                <input type='hidden' name='codigo' value="<?php echo $resultado['CODIGO_CLIENTE']?>" >
+                <input type='hidden' name='codigo' value="<?php echo $resultado['CODIGO_CLIENTE']?>">
                 <div class="campo-formulario">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" value="<?php echo $resultado['USUARIO']?>" required>
+                    <input type="text" id="usuario" name="usuario" value="<?php echo $resultado['USUARIO']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="nombres">Nombres:</label>
-                    <input type="text" id="nombres" name="nombres" value="<?php echo $resultado['NOMBRES']?>" required>
+                    <input type="text" id="nombres" name="nombres" value="<?php echo $resultado['NOMBRES']?>">
                 </div>
                  <div class="campo-formulario">
                     <label for="apellidos">Apellidos:</label>
-                    <input type="text" id="apellidos" name="apellidos" value="<?php echo $resultado['APELLIDOS']?>" required>
+                    <input type="text" id="apellidos" name="apellidos" value="<?php echo $resultado['APELLIDOS']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>" required>
+                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="direccion">Telefono:</label>
-                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
+                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" value="<?php echo $resultado['CONTRASEÑA']?>" required>
+                    <input type="password" id="password" name="password" value="<?php echo $resultado['CONTRASEÑA']?>">
                 </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
                 <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Perfil</button>
@@ -68,6 +72,5 @@
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
-    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
 </html>

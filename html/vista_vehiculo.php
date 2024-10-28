@@ -20,6 +20,7 @@
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
+               <li><a href="http://localhost/Proyecto%20Final/php/vista_turnos.php">Turnos</a></li>
                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -39,19 +40,19 @@
                 <input type='hidden' name='patente' value="<?php echo $resultado['PATENTE']?>">
                 <div class="campo-formulario">
                     <label for="marca">Marca:</label>
-                    <input type="text" id="marca" name="marca" value="<?php echo $resultado['MARCA']?>" required>
+                    <input type="text" id="marca" name="marca" value="<?php echo $resultado['MARCA']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="modelo">Modelo:</label>
-                    <input type="text" id="modelo" name="modelo" value="<?php echo $resultado['MODELO']?>" required>
+                    <input type="text" id="modelo" name="modelo" value="<?php echo $resultado['MODELO']?>">
                 </div>
                  <div class="campo-formulario">
                     <label for="patente_new">Patente:</label>
-                    <input type="text" id="patente_new" name="patente_new" value="<?php echo $resultado['PATENTE']?>" required>
+                    <input type="text" id="patente_new" name="patente_new" value="<?php echo $resultado['PATENTE']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="anio">Año:</label>
-                    <input type="text" id="anio" name="anio" value="<?php echo $resultado['ANIO']?>" required>
+                    <input type="text" id="anio" name="anio" value="<?php echo $resultado['ANIO']?>">
                 </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
                 <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar vehiculo</button>
@@ -62,6 +63,5 @@
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
-    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
 </html>
