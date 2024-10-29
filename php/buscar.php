@@ -29,14 +29,14 @@ if ($resultado->num_rows > 0) {
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
                     echo "<p><strong>Telefono:</strong> " . $fila['TELEFONO'] . "</p>";
 
-                    echo "<form action='http://localhost/Proyecto%20Final/php/vista_vehiculos.php' method='POST'>";
+                    echo "<form action='http://localhost/Proyecto%20Final/php/vista_vehiculos_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
                     echo "<input type='hidden' name='usuario' value='" . $fila['USUARIO'] . "'>";
                     echo "<button type='submit' class='boton-reservar'>Ver vehiculos</button>";
                     echo "</div> </form> ";
 
-                    echo " <form action='http://localhost/Proyecto%20Final/html/vista_cliente.php' method='POST'>";
+                    echo " <form action='http://localhost/Proyecto%20Final/html/vista_cliente_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
                     echo "<button type='submit' class='boton-reservar'>Modificar cliente</button>";
@@ -47,7 +47,7 @@ if ($resultado->num_rows > 0) {
                 echo"<div class='tarjeta-vehiculo nuevo-vehiculo'>";
                 echo"<i class='fa-solid fa-plus'></i>";
                 echo"<h3>Agregar Nuevo Cliente</h3>";
-                echo"<a href='http://localhost/Proyecto%20Final/html/vista_cargar_cliente.php' class='boton-agregar'>Agregar</a>";
+                echo"<a href='http://localhost/Proyecto%20Final/html/vista_cargar_cliente_admin.php' class='boton-agregar'>Agregar</a>";
                 echo"</div>";
     /*echo "<table>
             <tr>

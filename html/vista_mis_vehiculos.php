@@ -29,7 +29,7 @@
 
             <?php
                 include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-                $id_usuario = $_SESSION['id'];
+                $id_usuario = $_SESSION['id_sesion'];
                 $consulta = mysqli_query($conexion, "SELECT PATENTE, MARCA, MODELO, ANIO FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$id_usuario'");
 
                 $resultado = mysqli_num_rows($consulta);

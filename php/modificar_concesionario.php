@@ -1,7 +1,4 @@
-<?php if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
+<?php @session_start();?>
 <html>
     <head>
 
@@ -10,7 +7,7 @@
         
     <?php
     //sujeto a modificacion si se guarda la contraseña en la tabla concesionario
-        $codigo = $_SESSION['codigo'];
+        $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $direccion = $_POST['direccion'];
         $email = $_POST['email'];
@@ -32,12 +29,12 @@
                 echo "Cambios no realizados";
                
             }
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
+            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios_admin.php");
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'");
             $consulta = mysqli_query($conexion, "DELETE FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
+            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes_admin.php");
         }
     ?>
 

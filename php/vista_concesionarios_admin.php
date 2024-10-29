@@ -1,6 +1,4 @@
-<?if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
+<?php @session_start();?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +29,7 @@
             $resultado = mysqli_num_rows($consulta);
             if ($resultado != 0) {
                 while($fila = mysqli_fetch_array($consulta)) {
-                    $_SESSION['codigo'] = $fila['CODIGO_CONCESIONARIO'];
+                    
                     echo "<div class='tarjeta-concesionario'>";
                     echo "<h3>" . $fila['NOMBRE'] . "</h3>";
                     echo "<p><strong>Direccion:</strong> " . $fila['DIRECCION'] . "</p>";
@@ -40,12 +38,17 @@
                     
                     echo "<form action='http://localhost/Proyecto%20Final/php/vista_turnos_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
-                    echo "<a href='http://localhost/Proyecto%20Final/html/vista_concesionario_admin.php' class='boton-reservar'>Modificar concesionario</a> ";
-                    echo "</div>";
-                    echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";
                     echo "<input type='hidden' name='nombre' value='" . $fila['NOMBRE'] . "'>";
                     echo "<button type='submit' class='boton-reservar'>Ver turnos</button>";
+                    echo "</div>";
+                    echo "</form>";
+
+                    echo "<form action='http://localhost/Proyecto%20Final/html/vista_concesionario_admin.php' method='POST'>";
+                    echo "<div class='campo-formulario'> ";
+                    echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";
+                    echo "<input type='hidden' name='nombre' value='" . $fila['NOMBRE'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Modificar concesionario</button>";
                     echo "</div>";
                     echo "</form>";
                     
@@ -59,7 +62,7 @@
         <div class="tarjeta-vehiculo nuevo-vehiculo">
                 <i class="fa-solid fa-plus"></i>
                 <h3>Agregar Nuevo Concesionario</h3>
-                <a href="http://localhost/Proyecto%20Final/html/vista_cargar_concesionario.php" class="boton-agregar">Agregar</a>
+                <a href="http://localhost/Proyecto%20Final/html/vista_cargar_concesionario_admin.php" class="boton-agregar">Agregar</a>
         </div>
         <section>
     </article>
