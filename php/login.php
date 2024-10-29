@@ -1,4 +1,5 @@
-<?php @session_start();?><!doctype html>
+<?php @session_start();?>
+<!doctype html>
 <html>
     <head>
         <title>Login de usuarios</title>
@@ -19,7 +20,7 @@
 
             if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'USUARIO')
             {
-                
+                $_SESSION['tipo_usuario'] = $respuesta['TIPO_CLIENTE'];
                 $_SESSION['nombre_sesion'] = $respuesta['NOMBRES'];
                 $_SESSION['apellido_sesion'] = $respuesta['APELLIDOS'];
                 $_SESSION['correo_sesion'] = $respuesta['CORREO_ELECTRONICO'];
@@ -32,6 +33,7 @@
             }
             else if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'ADMIN')
             {
+                $_SESSION['tipo_usuario'] = $respuesta['TIPO_CLIENTE'];
                 $_SESSION['nombre_sesion'] = $respuesta['NOMBRES'];
                 $_SESSION['apellido_sesion'] = $respuesta['APELLIDOS'];
                 $_SESSION['correo_sesion'] = $respuesta['CORREO_ELECTRONICO'];

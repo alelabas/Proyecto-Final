@@ -1,5 +1,4 @@
 <?php @session_start();?>
-<!-- VISTA PARA EL ADMIN DE UN CONCESIONARIO ESPECIFICO Y SUS DATOS-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
     <header>
         <nav class="navegador">
             <div>
-                <a href="http://localhost/Proyecto%20Final/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
+                <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
             </div>
             <ul class="lista">
                <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
@@ -54,8 +53,11 @@
                     <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
                 </div>
                 
-                <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
-                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Concesionario</button>            
+                <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>            
+            </form>
+            <form class="" action="http://localhost/Proyecto%20Final/php/modificar_concesionario.php" method="post">
+                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Concesionario</button>
+                <input type='hidden' name='codigo' value="<?php echo $codigo?>">
             </form>
         </section>
     </article>

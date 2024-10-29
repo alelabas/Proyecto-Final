@@ -6,13 +6,14 @@
     <body>
         
     <?php
-    //sujeto a modificacion si se guarda la contraseña en la tabla concesionario
+        
         $codigo = $_POST['codigo'];
+        if($_POST['accion'] =='modificar'){
         $nombre = $_POST['nombre'];
         $direccion = $_POST['direccion'];
         $email = $_POST['email'];
         $telefono = $_POST['telefono'];
-
+        }
 
         include("conexion.php");
 
@@ -34,7 +35,7 @@
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'");
             $consulta = mysqli_query($conexion, "DELETE FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes_admin.php");
+            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios_admin.php");
         }
     ?>
 
