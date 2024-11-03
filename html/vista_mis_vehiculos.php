@@ -15,7 +15,7 @@
                 <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
                 <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
                 <li><a href="#">Mis Vehículos</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
+                <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
                 <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
@@ -29,7 +29,7 @@
 
             <?php
                 include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-                $id_usuario = $_SESSION['id'];
+                $id_usuario = $_SESSION['id_sesion'];
                 $consulta = mysqli_query($conexion, "SELECT PATENTE, MARCA, MODELO, ANIO FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$id_usuario'");
 
                 $resultado = mysqli_num_rows($consulta);

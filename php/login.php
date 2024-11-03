@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php @session_start();?>
 <!doctype html>
 <html>
     <head>
@@ -20,26 +20,27 @@
 
             if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'USUARIO')
             {
-
-                $_SESSION['nombre'] = $respuesta['NOMBRES'];
-                $_SESSION['apellido'] = $respuesta['APELLIDOS'];
-                $_SESSION['correo'] = $respuesta['CORREO_ELECTRONICO'];
-                $_SESSION['telefono'] = $respuesta['TELEFONO'];
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['contraseña'] = $contraseña;
-                $_SESSION['id'] = $respuesta['CODIGO_CLIENTE'];
+                $_SESSION['tipo_usuario'] = $respuesta['TIPO_CLIENTE'];
+                $_SESSION['nombre_sesion'] = $respuesta['NOMBRES'];
+                $_SESSION['apellido_sesion'] = $respuesta['APELLIDOS'];
+                $_SESSION['correo_sesion'] = $respuesta['CORREO_ELECTRONICO'];
+                $_SESSION['telefono_sesion'] = $respuesta['TELEFONO'];
+                $_SESSION['usuario_sesion'] = $usuario;
+                $_SESSION['contraseña_sesion'] = $contraseña;
+                $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
                 
                 include("C:\\xampp\htdocs\Proyecto Final\html\\vista_usuario.php");
             }
             else if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'ADMIN')
             {
-                $_SESSION['nombre'] = $respuesta['NOMBRES'];
-                $_SESSION['apellido'] = $respuesta['APELLIDOS'];
-                $_SESSION['correo'] = $respuesta['CORREO_ELECTRONICO'];
-                $_SESSION['telefono'] = $respuesta['TELEFONO'];
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['contraseña'] = $contraseña;
-                $_SESSION['id'] = $respuesta['CODIGO_CLIENTE'];
+                $_SESSION['tipo_usuario'] = $respuesta['TIPO_CLIENTE'];
+                $_SESSION['nombre_sesion'] = $respuesta['NOMBRES'];
+                $_SESSION['apellido_sesion'] = $respuesta['APELLIDOS'];
+                $_SESSION['correo_sesion'] = $respuesta['CORREO_ELECTRONICO'];
+                $_SESSION['telefono_sesion'] = $respuesta['TELEFONO'];
+                $_SESSION['usuario_sesion'] = $usuario;
+                $_SESSION['contraseña_sesion'] = $contraseña;
+                $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
 
                 include("C:\\xampp\htdocs\Proyecto Final\html\\vista_admin.php");
             }

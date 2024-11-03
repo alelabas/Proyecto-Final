@@ -26,8 +26,8 @@
         <p>Aquí puedes personalizar tu información de perfil</p>
         <?php 
         include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        $usuario = $_SESSION['usuario'];
-        $contraseña = $_SESSION['contraseña'];
+        $usuario = $_SESSION['usuario_sesion'];
+        $contraseña = $_SESSION['contraseña_sesion'];
         $consulta = mysqli_query($conexion, "SELECT NOMBRES, APELLIDOS, CORREO_ELECTRONICO, TELEFONO FROM CLIENTE WHERE USUARIO = '$usuario' AND CONTRASEÑA ='$contraseña'");
         $resultado = mysqli_fetch_array($consulta);
         ?>

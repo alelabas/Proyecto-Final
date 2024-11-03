@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php @session_start()?>
 <html>
     <head>
 
@@ -7,8 +7,8 @@
         
     <?php
 
-        $usuario = $_SESSION['usuario'];
-        $contraseña = $_SESSION['contraseña'];
+        $usuario = $_SESSION['usuario_sesion'];
+        $contraseña = $_SESSION['contraseña_sesion'];
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $email = $_POST['email'];
