@@ -7,7 +7,7 @@
     <body>
         <?php
 
-            $codigo = $_SESSION['id'];
+            $codigo = $_SESSION['id_sesion'];
             $titulo = $_POST['titulo'];
             $mensaje = $_POST['mensaje'];
 

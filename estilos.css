@@ -13,22 +13,29 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-}
-
-.pag_principal {
-    flex: 1 0 auto;
-}
-
-footer {
-    flex-shrink: 0;
-}
-
-body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
     line-height: 1.6;
 }
+
+.pag_principal {
+    flex: 1 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+footer {
+    flex-shrink: 0;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -70,11 +77,6 @@ h1 {
     color: #3498db;
 }
 
-.pag_principal {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
 
 h1, h2 {
     color: #2c3e50;
@@ -112,13 +114,7 @@ ul a:hover {
     background-color: #2980b9;
 }
 
-footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    text-align: center;
-    padding: 1rem;
-    margin-top: auto;
-}
+
 .concesionarios {
     display: flex;
     flex-wrap: wrap;

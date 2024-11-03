@@ -14,10 +14,10 @@
             <nav class="navegador">
                 <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
                 <ul class="lista">
-                    <li><a href="#">Reservar Turno</a></li>
+                    <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
                     <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
                     <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                    <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
+                    <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
                     <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
                 </ul>
             </nav>
@@ -28,7 +28,7 @@
             <form action="http://localhost/Proyecto%20Final/php/enviar_contacto.php" method="post" class="formulario-login">
                 <div class="campo-formulario">
                     <label for="correo">Correo Electronico:</label>
-                    <input type="text" id="correo" name="correo" value="<?php echo  $_SESSION['correo']; ?>" required readonly>
+                    <input type="text" id="correo" name="correo" value="<?php echo  $_SESSION['correo_sesion']; ?>" required readonly>
                 </div>
                 <div class="campo-formulario">
                     <label for="titulo">Titulo:</label>
