@@ -16,7 +16,7 @@
             include("conexion.php");
             // Se omitio de momento la contraseña ya que no esta definido donde guardarla.
             $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO) VALUES ('$nombre', '$direccion', '$telefono', '$email')");
-            header("Location:http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php");
+            header("Location:../php/vista_concesionarios_admin.php");
         ?>
     </body>
 </html>

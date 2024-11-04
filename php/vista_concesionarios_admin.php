@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Turnos Asignados</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
+            <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes_admin.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios_admin.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
+               <li><a href="vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -36,7 +36,7 @@
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
                     echo "<p><strong>Telefono:</strong> " . $fila['TELEFONO'] . "</p>";
                     
-                    echo "<form action='http://localhost/Proyecto%20Final/php/vista_turnos_admin.php' method='POST'>";
+                    echo "<form action='vista_turnos_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";
                     echo "<input type='hidden' name='nombre' value='" . $fila['NOMBRE'] . "'>";
@@ -44,7 +44,7 @@
                     echo "</div>";
                     echo "</form>";
 
-                    echo "<form action='http://localhost/Proyecto%20Final/html/vista_concesionario_admin.php' method='POST'>";
+                    echo "<form action='../html/vista_concesionario_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";
                     echo "<input type='hidden' name='nombre' value='" . $fila['NOMBRE'] . "'>";
@@ -62,7 +62,7 @@
         <div class="tarjeta-vehiculo nuevo-vehiculo">
                 <i class="fa-solid fa-plus"></i>
                 <h3>Agregar Nuevo Concesionario</h3>
-                <a href="http://localhost/Proyecto%20Final/html/vista_cargar_concesionario_admin.php" class="boton-agregar">Agregar</a>
+                <a href="../html/vista_cargar_concesionario_admin.php" class="boton-agregar">Agregar</a>
         </div>
         <section>
     </article>

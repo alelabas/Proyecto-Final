@@ -35,17 +35,17 @@
                     $consulta = mysqli_query($conexion, "UPDATE TURNO SET PATENTE_VEHICULO = '$patente' ,HORA_TURNO = '$hora', FECHA_TURNO = '$fecha', MANT_CODIGO_SERVICIO = '$mantenimiento' WHERE CODIGO_TURNO = '$codigo'");
                 }
                 echo "Cambios realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
+                include("..\php\\vista_concesionarios.php");
             }
             else 
             {
                 echo "Cambios no realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
+                include("..\php\\vista_concesionarios.php");
             }
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CODIGO_TURNO = '$codigo'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios.php");
+            include("..\php\\vista_concesionarios.php");
         }
     ?>
 

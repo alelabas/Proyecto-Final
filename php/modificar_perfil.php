@@ -29,7 +29,7 @@
         {
             echo "Cambios no realizados";
         }
-        include("C:\\xampp\htdocs\Proyecto Final\html\\vista_perfil.php");
+        include("..\html\\vista_perfil.php");
     ?>
 
     </body>

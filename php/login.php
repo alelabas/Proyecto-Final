@@ -29,7 +29,7 @@
                 $_SESSION['contraseña_sesion'] = $contraseña;
                 $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
                 
-                include("C:\\xampp\htdocs\Proyecto Final\html\\vista_usuario.php");
+                include("..\html\\vista_usuario.php");
             }
             else if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'ADMIN')
             {
@@ -42,12 +42,12 @@
                 $_SESSION['contraseña_sesion'] = $contraseña;
                 $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
 
-                include("C:\\xampp\htdocs\Proyecto Final\html\\vista_admin.php");
+                include("..\html\\vista_admin.php");
             }
             else
             {
                 echo "Usuario no registrado";
-                include("C:\\xampp\htdocs\Proyecto Final\html\\vista_registrarte.html");    
+                include("..\html\\vista_registrarte.html");    
             }
 
         ?>
