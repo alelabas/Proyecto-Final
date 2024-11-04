@@ -19,12 +19,20 @@
             include("conexion.php");
 
             $_SESSION['usuario'] = $usuario;
-            $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'USUARIO')");
-            if($_SESSION['tipo_usuario'] == 'ADMIN'){
-                header("Location:http://localhost/Proyecto%20Final/php/vista_clientes_admin.php");
+            if($_POST['tipo_usuario'] == 'concesionario'){
+                $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'CONCESIONARIO')");
+            }
+            else if($_POST['tipo_usuario'] == 'admin'){
+                $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'ADMIN')");
             }
             else{
-                header("Location:http://localhost/Proyecto%20Final/html/vista_iniciar_sesion.html");
+                $consulta = mysqli_query($conexion, "INSERT INTO CLIENTE (NOMBRES, APELLIDOS, CORREO_ELECTRONICO, USUARIO, CONTRASEÑA, TELEFONO, TIPO_CLIENTE) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$contraseña', '$telefono', 'USUARIO')");
+            }
+            if($_SESSION['tipo_usuario'] == 'ADMIN'){
+                header("Location:../php/vista_clientes_admin.php");
+            }
+            else{
+                header("Location:../html/vista_iniciar_sesion.html");
             }
         ?>
     </body>

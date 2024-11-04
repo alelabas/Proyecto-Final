@@ -30,12 +30,12 @@
                 echo "Cambios no realizados";
                
             }
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios_admin.php");
+            include("..\php\\vista_concesionarios_admin.php");
         }
         else{
             $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'");
             $consulta = mysqli_query($conexion, "DELETE FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_concesionarios_admin.php");
+            include("..\php\\vista_concesionarios_admin.php");
         }
     ?>
 

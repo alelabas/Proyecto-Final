@@ -32,10 +32,10 @@
             }
 
             if($_SESSION['tipo_usuario'] == 'ADMIN'){
-                header("Location:http://localhost/Proyecto%20Final/php/vista_clientes_admin.php");
+                header("Location:../php/vista_clientes_admin.php");
             }
             else{
-                include("C:\\xampp\htdocs\Proyecto Final\html\\vista_mis_vehiculos.php");
+                include("..\html\\vista_mis_vehiculos.php");
             }
         ?>
     </body>
