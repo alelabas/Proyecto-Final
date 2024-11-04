@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Perfil de Usuario</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
+            <a href="../html/vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/php/salir.php">Cerrar sesion</a></li>
+                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../php/salir.php">Cerrar sesion</a></li>
                 <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
@@ -33,7 +33,7 @@
         ?>
         
         <section class="perfil-usuario">
-            <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_perfil.php" method="post">
+            <form class="formulario-perfil" action="../php/modificar_perfil.php" method="post">
                 <div class="campo-formulario">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRES']?>">
@@ -55,7 +55,7 @@
                 </div>
                 
                 <button type="submit" class="boton-guardar">Guardar Cambios</button>
-                <a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar Sesion</a>
+                <a href="../php/cerrar_sesion.php">Cerrar Sesion</a>
             </form>
         </section>
     </article>
