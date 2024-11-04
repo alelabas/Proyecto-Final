@@ -1,4 +1,7 @@
-<?php @session_start();?>
+<?php @session_start();
+  include("../php/conexion.php");
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -25,14 +28,30 @@
                 <h3>Reserva de Turno para Mantenimiento</h3>
             </div>
             <div class="card-body">
-                <form action="procesar_reserva.php" method="POST">
+                <form action="../php/procesar_reserva.php" method="POST">
                     <div class="form-group">
                         <label for="concesionario">Concesionario</label>
-                        <select id="concesionario" name="concesionario" required>
+                        <select type="text" id="concesionario" name="concesionario" required>
                             <option value="">Seleccione un concesionario</option>
-                            <option value="concesionario1">Concesionario Centro</option>
-                            <option value="concesionario2">Concesionario Norte</option>
-                            <option value="concesionario3">Concesionario Sur</option>
+                            <?php 
+                            $consulta = mysqli_query($conexion, "SELECT * FROM concesionario");
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                echo "<option value='".$row['NOMBRE']."'>".$row['NOMBRE']."</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Mantenimiento">Mantenimiento</label>
+                        <select type="text" id="mantenimiento" name="mantenimiento" required>
+                            <option value="">Seleccione el mantenimiento deseado</option>
+                            <?php 
+                            $consulta = mysqli_query($conexion, "SELECT * FROM mantenimiento");
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                echo "<option value='".$row['DESCRIPCION']."'>".$row['DESCRIPCION']."</option>";
+                            }
+                            ?>
                         </select>
                     </div>
 
@@ -43,11 +62,12 @@
 
                     <div class="form-group">
                         <label for="hora">Hora del Turno</label>
-                        <select id="hora" name="hora" required>
+                        <select type="text" id="hora" name="hora" required>
                             <option value="">Seleccione una hora</option>
                             <?php
                             for ($i = 8; $i <= 17; $i++) {
-                                echo "<option value='$i'>$i:00</option>";
+                                echo "<option value='$i:00'>$i:00</option>";
+                                echo "<option value='$i:30'>$i:30</option>";
                             }
                             ?>
                         </select>
@@ -55,11 +75,13 @@
 
                     <div class="form-group">
                         <label for="vehiculo">Vehículo</label>
-                        <select id="vehiculo" name="vehiculo" required>
-                            <option value="">Seleccione su vehículo</option>
-                            <option value="vehiculo1">Toyota Corolla</option>
-                            <option value="vehiculo2">Honda Civic</option>
-                            <option value="vehiculo3">Ford Focus</option>
+                        <select type="text" id="vehiculo" name="vehiculo" required>
+                        <?php 
+                            $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo WHERE CODIGO_PROPIETARIO = '".$_SESSION['id_sesion']."'");
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                echo "<option value='".$row['PATENTE']."'>".'['.$row['PATENTE'].']'." - ".$row['MARCA']." ".$row['MODELO']."</option>";
+                            }
+                            ?>
                         </select>
                     </div>
 

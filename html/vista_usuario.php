@@ -10,14 +10,14 @@
 <body>
     <header>
         <nav class="navegador">
-            <a href="../html/vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
+            <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
 
             <ul class="lista">
-                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="vista_mis_vehiculos.php">Mis Vehículos</a></li>
                 <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-                <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -46,7 +46,7 @@
         <section class="servicios">
             <h2>Contactanos</h2>
             <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
-            <a href="../html/contacto.php">Contactar</a>
+            <a href="contacto.php">Contactar</a>
         </section>
     </article>
     

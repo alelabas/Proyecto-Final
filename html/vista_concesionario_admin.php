@@ -25,10 +25,11 @@
         <h1>Concesionario</h1>
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
-        include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        $codigo = $_POST['codigo'];
+        include("..\php\conexion.php");
+        $codigo = $_SESSION['id_sesion'];
         $consulta = mysqli_query($conexion, "SELECT NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
-        $resultado = mysqli_fetch_array($consulta);
+        $resultado = mysqli_fetch_assoc($consulta);
+
         ?>
         <section class="perfil-usuario">
             <form class="formulario-perfil" action="../php/modificar_concesionario.php" method="post">

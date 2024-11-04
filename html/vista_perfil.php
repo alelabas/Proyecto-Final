@@ -1,4 +1,6 @@
-<?php @session_start()?>
+<?php @session_start();
+  include("../php/conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,7 +17,7 @@
                 <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
                 <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
                 <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                <li><a href="../php/salir.php">Cerrar sesion</a></li>
+                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
                 <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
@@ -25,7 +27,7 @@
         <h1>Perfil de Usuario</h1>
         <p>Aquí puedes personalizar tu información de perfil</p>
         <?php 
-        include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
+        include("..\php\conexion.php");
         $usuario = $_SESSION['usuario_sesion'];
         $contraseña = $_SESSION['contraseña_sesion'];
         $consulta = mysqli_query($conexion, "SELECT NOMBRES, APELLIDOS, CORREO_ELECTRONICO, TELEFONO FROM CLIENTE WHERE USUARIO = '$usuario' AND CONTRASEÑA ='$contraseña'");
