@@ -32,9 +32,9 @@
                     <div class="form-group">
                         <label for="concesionario">Concesionario</label>
                         <select type="text" id="concesionario" name="concesionario" required>
-                            <option value="">Seleccione un concesionario</option>
+                            <option value="<?php echo $_GET['concesionario'] ?>" selected><?php echo $_GET['concesionario'] ?></option>
                             <?php 
-                            $consulta = mysqli_query($conexion, "SELECT * FROM concesionario");
+                            $consulta = mysqli_query($conexion, "SELECT * FROM concesionario where NOMBRE != '".$_GET['concesionario']."'");
                             while ($row = mysqli_fetch_assoc($consulta)) {
                                 echo "<option value='".$row['NOMBRE']."'>".$row['NOMBRE']."</option>";
                             }

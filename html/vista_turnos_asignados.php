@@ -23,6 +23,12 @@ include('../php/conexion.php');?>
     </header>
     
     <article class="pag_principal">
+        <?php
+            if(isset($_GET['turno_reservado']))
+            {
+                echo "<div class='alert'>¡Turno reservado exitosamente!</div>";
+            }
+        ?>
         <h1>Turnos Asignados</h1>
         <p>Aquí puedes ver los turnos que has reservado</p>
         <section class="turnos-asignados">
@@ -53,7 +59,7 @@ include('../php/conexion.php');?>
                             <p><strong>Telefono:</strong> '.$telefono.'</p>
                             <p><strong>Vehículo:</strong> '.$vehiculo.'</p>
                             <p><strong>Mantenimiento:</strong> '.$mantenimiento.'</p>
-                            <a href="../php/cancelar_turno.php?id='.$turno['CODIGO_TURNO'].'" class="boton-cancelar">Cancelar Turno</a>
+                            <a href="#" onclick="confirmarCancelacion('.$turno['CODIGO_TURNO'].')" class="boton-cancelar">Cancelar Turno</a>
                         </div>';
             }
         ?>
@@ -64,5 +70,12 @@ include('../php/conexion.php');?>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+    <script>
+    function confirmarCancelacion(idTurno) {
+        if (confirm('¿Está seguro que desea cancelar este turno?')) {
+            window.location.href = '../php/cancelar_turno.php?id=' + idTurno;
+        }
+    }
+    </script>
 </body>
 </html>

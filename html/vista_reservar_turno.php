@@ -44,14 +44,14 @@
             ?>
 
             <div class="tarjeta-concesionario">
-                <img src="../img/concesionario1.jpg" alt="Concesionario 1">
+                <img src="../img/concesionario.jpg" alt="Concesionario">
                 <?php
                     echo "<h3>$concesionario[1]</h3>";
                     echo "<p><strong>Direccion:</strong> $concesionario[2]</p>";
                     echo "<p><strong>Numero de telefono:</strong> $concesionario[3]</p>";
                     echo "<p><strong>Correo electronico:</strong> $concesionario[4]</p>";
                     ?>
-                <a href="form_reserva_de_turnos.php" class="boton-reservar">Reservar Turno</a>
+                <a href="form_reserva_de_turnos.php?concesionario=<?php echo $concesionario[1] ?>" class="boton-reservar">Reservar Turno</a>
             </div>
                 <?php
                     }
