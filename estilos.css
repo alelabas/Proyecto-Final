@@ -386,3 +386,14 @@ footer {
 .contenedor-formulario a:hover {
     text-decoration: underline;
 }
+
+.alert {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: fadeOut 3s forwards;
+    animation-delay: 2s;
+}
