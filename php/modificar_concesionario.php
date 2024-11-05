@@ -6,6 +6,7 @@
     <body>
         
     <?php
+    include("conexion.php");
         $codigo = $_POST['codigo'];
         if($_POST['accion'] =='modificar'){
             $nombre = $_POST['nombre'];
@@ -20,15 +21,21 @@
                 }
         }
 
-        include("conexion.php");
+        
 
         $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
         $resultado = mysqli_num_rows($consulta);
         if($_POST['accion'] =='modificar'){
             if ($resultado != 0)
             {
-                $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono, CODIGO_USUARIO = '$codigo_usuario' WHERE CODIGO_CONCESIONARIO = '$codigo'");
-                echo "Cambios realizados correctamente";
+                
+                $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono , CODIGO_USUARIO = '$codigo_usuario' WHERE CODIGO_CONCESIONARIO = '$codigo'");
+                if ($consulta) {
+                    echo "Cambios realizados correctamente";
+                } 
+                else {
+                    echo "Error al realizar cambios: " . mysqli_error($conexion);
+                }
             }
             else 
             {

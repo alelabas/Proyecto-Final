@@ -1,7 +1,4 @@
-<?php if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
-<!-- VISTA PARA EL ADMIN DE UN CONCESIONARIO ESPECIFICO Y SUS DATOS-->
+<?php @session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,28 +11,58 @@
 <body>
     <header>
         <nav class="navegador">
-            <div>
-                <a href="../vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
-            </div>
-            <ul class="lista">
-               <li><a href="../php/vista_clientes.php">Clientes</a></li>
-               <li><a href="../php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-            </ul>
+            <?php if($_SESSION['tipo_usuario'] == 'USUARIO' ){
+            
+            echo"<a href='../html/vista_usuario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
+            echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
+            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else if($_SESSION['tipo_usuario'] == 'CONCESIONARIO' ){
+            echo"<a href='../html/vista_concesionario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_datos_concesionario.php'>Mi concesionario</a></li>";
+            echo"   <li><a href='../php/vista_turnos_concesionario.php'>Turnos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else{
+            echo"<a href='../html/vista_admin.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../php/vista_clientes_admin.php'>Usuarios</a></li>";
+            echo"   <li><a href='../php/vista_concesionarios_admin.php'>Concesionarios</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"</ul> ";
+        }
+        ?>
         </nav>
     </header>
     <article class="pag_principal">
         <h1>Vehiculo</h1>
         <p>Aquí puedes modificar la informacion del vehiculo</p>
         <?php 
-        include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
-        $patente = $_POST['patente'];
+        include("../php/conexion.php");
+        if($_SESSION['tipo_usuario'] == 'USUARIO'){
+            $patente = $_GET['patente'];
+        }
+        else{
+            $patente = $_POST['patente'];
+        }
         $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE PATENTE = '$patente'");
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">
             <form class="formulario-perfil" action="../php/modificar_vehiculo.php" method="post">
-                <input type='hidden' name='patente' value="<?php echo $resultado['PATENTE']?>">
+               
+                <div class="campo-formulario">
+                    <label for="patente">Patente: <?php echo $resultado['PATENTE']?> </label>
+                     <input type='hidden' name='patente' value="<?php echo $resultado['PATENTE']?>">
+                </div>
                 <div class="campo-formulario">
                     <label for="marca">Marca:</label>
                     <input type="text" id="marca" name="marca" value="<?php echo $resultado['MARCA']?>" required>
@@ -43,10 +70,6 @@
                 <div class="campo-formulario">
                     <label for="modelo">Modelo:</label>
                     <input type="text" id="modelo" name="modelo" value="<?php echo $resultado['MODELO']?>" required>
-                </div>
-                 <div class="campo-formulario">
-                    <label for="patente_new">Patente:</label>
-                    <input type="text" id="patente_new" name="patente_new" value="<?php echo $resultado['PATENTE']?>" required>
                 </div>
                 <div class="campo-formulario">
                     <label for="anio">Año:</label>

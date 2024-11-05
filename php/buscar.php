@@ -23,7 +23,13 @@ $resultado = $conexion->query($sql);
 if ($resultado->num_rows > 0) {
     while($fila = $resultado->fetch_assoc()) {
                     echo "<div class='tarjeta-concesionario'>";
-                    echo "<h2>" . $fila['TIPO_CLIENTE'] . "</h2>";
+                    $tipo_usuario = $fila['TIPO_CLIENTE'];
+                    if($tipo_usuario == 'USUARIO'){
+                        echo "<h2>CLIENTE</h2>";
+                    }
+                    else{
+                        echo "<h2>" . $fila['TIPO_CLIENTE'] . "</h2>";
+                    }
                     echo "<h3>" . $fila['USUARIO'] . "</h3>";
                     echo "<p><strong>Nombres:</strong> " . $fila['NOMBRES'] . "</p>";
                     echo "<p><strong>Apellidos:</strong> " . $fila['APELLIDOS'] . "</p>";
@@ -64,7 +70,7 @@ if ($resultado->num_rows > 0) {
                     echo " <form action='../html/vista_cliente_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
-                    echo "<button type='submit' class='boton-reservar'>Modificar cliente</button>";
+                    echo "<button type='submit' class='boton-reservar'>Modificar usuario</button>";
                     echo "</div> </form> ";
                     echo "</div>";
 

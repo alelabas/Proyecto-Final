@@ -12,21 +12,16 @@
 
     $result_concesionario = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO FROM CONCESIONARIO WHERE NOMBRE = '$concesionario'");
     $row_concesionario = mysqli_fetch_assoc($result_concesionario);
-    $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO'];
-
-    $result_cliente = mysqli_query($conexion, "SELECT CODIGO_PROPIETARIO FROM VEHICULO WHERE PATENTE = '$patente'");
-    $row_cliente = mysqli_fetch_assoc($result_cliente);
-    $id_cliente = $row_cliente['CODIGO_PROPIETARIO'];
+    $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO']; 
 
     $result_servicio = mysqli_query($conexion, "SELECT CODIGO_SERVICIO FROM mantenimiento WHERE DESCRIPCION = '$servicio'");
     $row_servicio = mysqli_fetch_assoc($result_servicio);
     $id_servicio = $row_servicio['CODIGO_SERVICIO'];
     
-    $estado = 'PENDIENTE';
+    $estado = 'MODIFICADO';
     
     mysqli_query($conexion, "UPDATE turno SET
         CONCESIONARIO_CODIGO = '$id_concesionario',
-        CLIENTE_CODIGO = '$id_cliente',
         MANT_CODIGO_SERVICIO = '$id_servicio',
         FECHA_TURNO = '$fecha',
         HORA_TURNO = '$hora',

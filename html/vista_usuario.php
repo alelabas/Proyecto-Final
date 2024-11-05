@@ -13,11 +13,11 @@
             <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
 
             <ul class="lista">
-                <li><a href="vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
                 <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-                <li><a href="vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -26,27 +26,32 @@
         <h1>Bienvenido a tu Panel de Usuario</h1>
         
         <section id="reservar-turno" class="servicios">
-            <h2>Reservar Turno</h2>
-            <p>Aquí puedes reservar un nuevo turno para tu vehículo.</p>
-            
+            <a href="vista_reservar_turno.php">
+                <h2>Reservar Turno</h2>
+                </a>
+                <p>Aquí puedes reservar un nuevo turno para tu vehículo.</p>
+                
         </section>
         
         <section id="turnos-asignados" class="servicios">
-            <h2>Turnos Asignados</h2>
-            <p>Visualiza y gestiona tus turnos asignados.</p>
-          
+            <a href="vista_turnos_asignados.php">
+                <h2>Turnos Asignados</h2>
+                </a>
+                <p>Visualiza y gestiona tus turnos asignados.</p>
+              
         </section>
         
         <section id="mis-vehiculos" class="servicios">
-            <h2>Mis Vehículos</h2>
-            <p>Administra la información de tus vehículos registrados.</p>
-          
+            <a href="vista_mis_vehiculos.php">
+                <h2>Mis Vehículos</h2>
+                </a>
+                <p>Administra la información de tus vehículos registrados.</p>
+              
         </section>
 
         <section class="servicios">
-            <h2>Contactanos</h2>
+            <a href="contacto.php"><h2>Contactanos</h2></a>
             <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
-            <a href="contacto.php">Contactar</a>
         </section>
     </article>
     

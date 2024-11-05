@@ -14,7 +14,7 @@
     $row_concesionario = mysqli_fetch_assoc($result_concesionario);
     $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO'];
 
-    $id_cliente = $_SESSION['id_sesion'];
+    
 
     $result_servicio = mysqli_query($conexion, "SELECT CODIGO_SERVICIO FROM mantenimiento WHERE DESCRIPCION = '$servicio'");
     $row_servicio = mysqli_fetch_assoc($result_servicio);
@@ -23,8 +23,8 @@
     $estado = 'PENDIENTE';
     
     mysqli_query($conexion, "INSERT INTO turno 
-                (CONCESIONARIO_CODIGO, CLIENTE_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
-        VALUES ('$id_concesionario' , '$id_cliente' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
+                (CONCESIONARIO_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
+        VALUES ('$id_concesionario' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
     if($_SESSION['tipo_usuario'] == 'USUARIO'){
         include("../html/vista_usuario.php");
     }
