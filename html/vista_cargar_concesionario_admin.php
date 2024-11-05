@@ -44,7 +44,7 @@
             </div>
             <div class="campo-formulario">
                 <label for="usuario">Usuario asignado:</label>
-                <select id="opciones" name="tipo_usuario" required>
+                <select id="opciones" name="codigo_usuario" required>
                 <?php 
                 include('../php/conexion.php');
                     $consulta = mysqli_query($conexion, 'SELECT * FROM CLIENTE' );

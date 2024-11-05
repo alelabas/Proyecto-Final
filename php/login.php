@@ -48,7 +48,7 @@
                 $_SESSION['contraseña_sesion'] = $contraseña;
                 $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
 
-                include("C:\\xampp\htdocs\Proyecto Final\html\\vista_concesionario.php");
+                include("../html/vista_concesionario.php");
             }
     else
     {

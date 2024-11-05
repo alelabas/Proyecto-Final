@@ -1,7 +1,7 @@
 <?php
     @session_start();
     include("conexion.php");
-
+    $codigo = $_POST['codigo'];
     $concesionario = $_POST['concesionario'];
     $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
@@ -14,7 +14,9 @@
     $row_concesionario = mysqli_fetch_assoc($result_concesionario);
     $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO'];
 
-    $id_cliente = $_SESSION['id_sesion'];
+    $result_cliente = mysqli_query($conexion, "SELECT CODIGO_PROPIETARIO FROM VEHICULO WHERE PATENTE = '$patente'");
+    $row_cliente = mysqli_fetch_assoc($result_cliente);
+    $id_cliente = $row_cliente['CODIGO_PROPIETARIO'];
 
     $result_servicio = mysqli_query($conexion, "SELECT CODIGO_SERVICIO FROM mantenimiento WHERE DESCRIPCION = '$servicio'");
     $row_servicio = mysqli_fetch_assoc($result_servicio);
@@ -22,11 +24,17 @@
     
     $estado = 'PENDIENTE';
     
-    mysqli_query($conexion, "INSERT INTO turno 
-                (CONCESIONARIO_CODIGO, CLIENTE_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
-        VALUES ('$id_concesionario' , '$id_cliente' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
-    if($_SESSION['tipo_usuario'] == 'USUARIO'){
-        include("../html/vista_usuario.php");
+    mysqli_query($conexion, "UPDATE turno SET
+        CONCESIONARIO_CODIGO = '$id_concesionario',
+        CLIENTE_CODIGO = '$id_cliente',
+        MANT_CODIGO_SERVICIO = '$id_servicio',
+        FECHA_TURNO = '$fecha',
+        HORA_TURNO = '$hora',
+        ESTADO_TURNO = '$estado',
+        VEHICULO_PATENTE = '$patente'
+        WHERE CODIGO_TURNO = '$codigo'");
+    if($_SESSION['tipo_usuario'] == 'CONCESIONARIO'){
+        include("../html/vista_concesionario.php");
     }
     else{
         include("../html/vista_admin.php");

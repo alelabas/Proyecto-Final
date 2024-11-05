@@ -1,97 +1,169 @@
-<?php if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
+<?php @session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilos.css">
-    <link rel="stylesheet" href="">
+
     <title>ServiNow</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <div>
-                <a href="../vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
-            </div>
-            <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
-               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
-               <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-            </ul>
+             <?php if($_SESSION['tipo_usuario'] == 'USUARIO' ){
+            
+            echo"<a href='../html/vista_usuario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
+            echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
+            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else if($_SESSION['tipo_usuario'] == 'CONCESIONARIO' ){
+            echo"<a href='../html/vista_concesionario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_datos_concesionario.php'>Mi concesionario</a></li>";
+            echo"   <li><a href='../php/vista_turnos_concesionario.php'>Turnos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else{
+            echo"<a href='../html/vista_admin.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../php/vista_clientes_admin.php'>Clientes</a></li>";
+            echo"   <li><a href='../php/vista_concesionarios_admin.php'>Concesionarios</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"</ul> ";
+        }
+        ?>
         </nav>
     </header>
     <article class="pag_principal">
-        <h1>Turno de <?php  
-            echo $_POST['nombre'] ?></h1>
-        <p>Aquí puedes modificar la informacion del turno</p>
         <?php 
-        include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
+        include("../php/conexion.php");
         $codigo = $_POST['codigo'];
         $consulta = mysqli_query($conexion, "SELECT * FROM TURNO WHERE CODIGO_TURNO = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
+        $codigo_conce = $resultado['CONCESIONARIO_CODIGO'];
+        $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo_conce'");
+        $resultado1 = mysqli_fetch_array($consulta1);
 
-
+        $nombre_concesionario = $resultado1['NOMBRE'];
 
         ?>
-        <section class="perfil-usuario">
-            <form class="formulario-perfil" action="../php/modificar_turno.php" method="post">
-                <input type='hidden' name='codigo' value="<?php echo $codigo?>">
-                <div class="campo-formulario">
-                <label for="opciones">Selecciona un mantenimiento:</label>
-                <select id="opciones" name="mantenimiento" required>
-                    <?php 
-                    $consulta2 = mysqli_query($conexion, "SELECT * FROM MANTENIMIENTO ");
-                    while($fila = mysqli_fetch_array($consulta2)) {
-                        if($resultado['MANT_CODIGO_SERVICIO']=$fila['CODIGO_SERVICIO']){
-                            echo "<option value='".$fila['CODIGO_SERVICIO']."' selected >".$fila['DESCRIPCION']."</option>";
-                        }
-                        else{
-                            echo "<option value='".$fila['CODIGO_SERVICIO']."' >".$fila['DESCRIPCION']."</option>";
-                        }
+        <div class="reserva-container">
+        <div class="reserva-card">
+            <div class="card-header">
+                <h3>Reserva de Turno para Mantenimiento</h3>
+            </div>
+            <div class="card-body">
+                <form action="../php/modificar_reserva.php" method="POST">
+                <input type="hidden" name="codigo" value= "<?php echo $codigo; ?>" >
+                    <div class="form-group">
+                        <label for="concesionario">Concesionario</label>
+                        <select type="text" id="concesionario" name="concesionario" required>
+                            <?php echo $nombre_concesionario ?>
+                            <option value="<?php echo $nombre_concesionario ?>" selected><?php echo $nombre_concesionario ?></option>
+                            <?php 
+                            $consulta = mysqli_query($conexion, "SELECT * FROM concesionario where NOMBRE != '".$nombre_concesionario."'");
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                if($row['NOMBRE'] == $resultado1['NOMBRE']){
+                                    echo "<option value='".$row['NOMBRE']."' selected>".$row['NOMBRE']."</option>";
+                                }
+                                else{
+                                    echo "<option value='".$row['NOMBRE']."'>".$row['NOMBRE']."</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
                     
-                    }
-                    ?>
-                </select>
-                </div>
-                <div class="campo-formulario">
-                <label for="opciones2">Selecciona un vehiculo:</label>
-                <select id="opciones2" name="patente" required>
-                    <?php 
-                    $consulta2 = mysqli_query($conexion, "SELECT * FROM VEHICULO ");
-                    echo "<option value= NULL selected >Sin asignar</option>";
-                    while($fila = mysqli_fetch_array($consulta2)) {
-                        if($resultado['PATENTE_VEHICULO']==$fila['PATENTE']){
-                            echo "<option value='".$fila['PATENTE']."' selected >".$fila['MARCA']." ".$fila['MODELO']." ".$fila['ANIO']." ".$fila['PATENTE']."</option>";
-                        }
-                        else{
-                            echo "<option value='".$fila['PATENTE']."' >".$fila['MARCA']." ".$fila['MODELO']." ".$fila['ANIO']." ".$fila['PATENTE']."</option>";
-                        }
-                    }
+                    <div class="form-group">
+                        <label for="Mantenimiento">Mantenimiento</label>
+                        <select type="text" id="mantenimiento" name="mantenimiento" required>
+                            <option value="">Seleccione el mantenimiento deseado</option>
+                            <?php 
+                            $consulta = mysqli_query($conexion, "SELECT * FROM mantenimiento");
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                if($row['CODIGO_SERVICIO'] == $resultado['MANT_CODIGO_SERVICIO']){
+                                    echo "<option value='".$row['DESCRIPCION']."'selected>".$row['DESCRIPCION']."</option>";
+                                }
+                                else{
+                                    echo "<option value='".$row['DESCRIPCION']."'>".$row['DESCRIPCION']."</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha del Turno</label>
+                        <input type="date" id="fecha" name="fecha" value= "<?php echo $resultado['FECHA_TURNO']; ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora">Hora del Turno</label>
+                        <select type="text" id="hora" name="hora" required>
+                            <option value="">Seleccione una hora</option>
+                            <?php
+                            for ($i = 8; $i <= 17; $i++) {
+                                if($resultado['HORA_TURNO'] == $i . ':00' ){
+                                    echo "<option value='$i:00'selected>$i:00</option>";
+                                    echo "<option value='$i:30'>$i:30</option>";
+                                }
+                                else if($resultado['HORA_TURNO'] == $i . ':30' ){
+                                    echo "<option value='$i:00'>$i:00</option>";
+                                    echo "<option value='$i:30'selected >$i:30</option>";
+                                }
+                                else{
+                                    echo "<option value='$i:00'>$i:00</option>";
+                                    echo "<option value='$i:30'>$i:30</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehiculo">Vehículo</label>
+                        <select type="text" id="vehiculo" name="vehiculo" required>
+                        <?php 
+                            if($_SESSION['tipo_usuario'] == 'USUARIO'){
+                                $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo WHERE CODIGO_PROPIETARIO = '".$_SESSION['id_sesion']."'");
+                            }
+                            else{
+                                $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo ");
+                            }
+                            
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                if($row['PATENTE'] ==$resultado['VEHICULO_PATENTE'] ){
+                                    echo "<option value='".$row['PATENTE']."' selected>".'['.$row['PATENTE'].']'." - ".$row['MARCA']." ".$row['MODELO']."</option>";
+                                }
+                                else{
+                                    echo "<option value='".$row['PATENTE']."'>".'['.$row['PATENTE'].']'." - ".$row['MARCA']." ".$row['MODELO']."</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Modificar</button>
+                    </div>
                     
-                    ?>
-                </select>
-                </div>
-                <div class="campo-formulario">
-                    <label for="fecha">Ingrese una fecha:</label>
-                    <input type="date" id="fecha" name="fecha" value="<?php echo $resultado['FECHA_TURNO']?>" required>
-                </div>
-                <div class="campo-formulario">
-                    <label for="hora">Ingrese un horario:</label>
-                    <input type="text" id="hora" name="hora" value="<?php echo $resultado['HORA_TURNO']?>" required>
-                </div>
-
-                <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
-                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Turno</button>
-
-            </form>
-        </section>
+                </form>
+            </div>
+        </div>
+    </div>
     </article>
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+   
 </body>
 </html>

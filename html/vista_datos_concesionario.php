@@ -11,13 +11,12 @@
 <body>
     <header>
         <nav class="navegador">
-            <div>
-                <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
-            </div>
+            <a href="../html/vista_concesionario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
-               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../html/vista_datos_concesionario.php">Mi concesionario</a></li>
+               <li><a href="../php/vista_turnos_concesionario.php">Turnos</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+               <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -26,14 +25,14 @@
         <p>Aquí puedes modificar la informacion del concesionario</p>
         <?php 
         include("..\php\conexion.php");
-        $codigo = $_POST['codigo'];
-        $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
+        $codigo = $_SESSION['id_sesion'];
+        $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_USUARIO = '$codigo'");
         $resultado = mysqli_fetch_assoc($consulta);
-
+        $codigo1 = $resultado['CODIGO_CONCESIONARIO']
         ?>
         <section class="perfil-usuario">
             <form class="formulario-perfil" action="../php/modificar_concesionario.php" method="post">
-                <input type='hidden' name='codigo' value="<?php echo $codigo?>">
+                <input type='hidden' name='codigo' value="<?php echo $codigo1 ?>">
                 <div class="campo-formulario">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRE']?>" required>
@@ -53,28 +52,7 @@
                     <label for="direccion">Telefono:</label>
                     <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
                 </div>
-                <div class="campo-formulario">
-                    <label for="opciones">Selecciona un usuario para administrar el concesionario:</label>
-                    <select id="opciones" name="codigo_usuario" required>
-                        <?php 
-                        $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = 'CONCESIONARIO'");
-                        echo "<option value= NULL >Sin asignar</option>";
-                        while($fila = mysqli_fetch_array($consulta)) {
-                            if($resultado['CODIGO_USUARIO']==$fila['CODIGO_CLIENTE']){
-                                echo "<option value='".$fila['CODIGO_CLIENTE']."' selected>".$fila['USUARIO']." </option>";
-                            }
-                            else{
-                                echo "<option value='".$fila['CODIGO_CLIENTE']."'>".$fila['USUARIO']." </option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>            
-            </form>
-            <form class="" action="../php/modificar_concesionario.php" method="post">
-                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar Concesionario</button>
-                <input type='hidden' name='codigo' value="<?php echo $codigo?>">
             </form>
         </section>
     </article>
