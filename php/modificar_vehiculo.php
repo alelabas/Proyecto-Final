@@ -7,7 +7,7 @@
         
     <?php
         $patente = $_POST['patente'];
-        $patente_new = $_POST['patente_new'];
+        
         $marca = $_POST['marca'];
         $modelo = $_POST['modelo'];
         $anio = $_POST['anio'];
@@ -20,7 +20,7 @@
         if($_POST['accion'] =='modificar'){
             if ($resultado != 0)
             {
-                $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET PATENTE = '$patente_new',MARCA = '$marca', MODELO = '$modelo', ANIO = '$anio' WHERE PATENTE = '$patente'");
+                $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET MARCA = '$marca', MODELO = '$modelo', ANIO = '$anio' WHERE PATENTE = '$patente'");
                 echo "Cambios realizados";
                 include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
             }
@@ -34,6 +34,13 @@
             $consulta = mysqli_query($conexion, "DELETE FROM VEHICULO WHERE PATENTE = '$patente'");
             include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
         }
+        if($_SESSION['tipo_usuario']=='USUARIO'){
+            include("../html/vista_mis_vehiculos.php");
+        }
+        else{
+            include("../php/vista_clientes_admin.php");
+        }
+        
     ?>
 
     </body>

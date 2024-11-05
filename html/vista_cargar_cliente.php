@@ -1,13 +1,10 @@
-<?php if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
-<!-- Vista para el admin -->
+<?php @session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <link rel="stylesheet" href="">
     <title>ServiNow</title>
 </head>
@@ -15,19 +12,19 @@
     <header>
         <nav class="navegador">
             <div>
-                <a href="http://localhost/Proyecto%20Final/html/vista_admin.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow"  height="80"></a>
+                <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_clientes.php">Clientes</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/vista_concesionarios.php">Concesionarios</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
-               <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+               <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
+               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>        
         </nav>
     </header>
     <main class="contenedor-formulario">
         <h1>Nuevo cliente</h1>
-        <form action="http://localhost/Proyecto%20Final/php/registro_admin.php" method="post" class="formulario-login">
+        <form action="../php/registro.php" method="post" class="formulario-login">
+            <input type='hidden' name='tipo_usuario' value="ADMIN">    
             <div class="campo-formulario">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -55,6 +52,14 @@
             <div class="campo-formulario">
                 <label for="confirmar-password">Confirmar contraseña:</label>
                 <input type="password" id="confirmar-password" name="confirmar-password" required>
+            </div>
+            <div class="campo-formulario">
+                <label for="tipo_usuario">Tipo de usuario:</label>
+                <select id="opciones" name="tipo_usuario" required>
+                        <option value='cliente' selected> CLIENTE </option>
+                        <option value='concesionario' > CONCESIONARIO </option>
+                        <option value='admin' > ADMINISTRADOR </option>
+                </select>
             </div>
             <button type="submit" class="boton-submit">Registrar</button>
         

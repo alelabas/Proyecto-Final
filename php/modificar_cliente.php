@@ -40,6 +40,7 @@
             $consulta = mysqli_query($conexion, "DELETE FROM CLIENTE WHERE CODIGO_CLIENTE = '$codigo'");
             include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
         }
+        include("..\php\\vista_clientes_admin.php");
     ?>
 
     </body>

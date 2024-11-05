@@ -5,27 +5,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+        <link rel="stylesheet" href="estilos.css">
         <title>ServiNow - Reservar Turno</title>
     </head>
     <body>
         
         <header>
             <nav class="navegador">
-                <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
+                <a href="html/vista_usuario.php"><img id="inicio" src="img/icono.webp" alt="ServiNow" height="80"></a>
                 <ul class="lista">
-                    <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
-                    <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                    <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                    <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
-                    <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                    <li><a href="#">Reservar Turno</a></li>
+                    <li><a href="html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                    <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                    <li><a href="../php/salir.php">Cerrar sesion</a></li>
+                    <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="contenedor-formulario" style="width: 50%; margin: auto;">
             <h1>Contacto</h1>
-            <form action="http://localhost/Proyecto%20Final/php/enviar_contacto.php" method="post" class="formulario-login">
+            <form action="../php/enviar_contacto.php" method="post" class="formulario-login">
                 <div class="campo-formulario">
                     <label for="correo">Correo Electronico:</label>
                     <input type="text" id="correo" name="correo" value="<?php echo  $_SESSION['correo_sesion']; ?>" required readonly>

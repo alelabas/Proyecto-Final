@@ -15,7 +15,7 @@
 
             $consulta = mysqli_query($conexion, "INSERT INTO CONSULTAS (CODIGO_CLIENTE, TITULO, MENSAJE) VALUES ('$codigo', '$titulo', '$mensaje')");
 
-            header("Location: http://localhost/Proyecto%20Final/html/contacto.php");
+            header("Location: ../html/contacto.php");
             echo "Consulta enviada";
 
         ?>

@@ -1,23 +1,46 @@
-<?php @session_start()?>
+<?php @session_start();
+  include("../php/conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Perfil de Usuario</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
-            <ul class="lista">
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar sesion</a></li>
-                <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
-            </ul>
+        <?php if($_SESSION['tipo_usuario'] == 'USUARIO' ){
+            
+            echo"<a href='../html/vista_usuario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
+            echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
+            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else if($_SESSION['tipo_usuario'] == 'CONCESIONARIO' ){
+            echo"<a href='../html/vista_concesionario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_datos_concesionario.php'>Mi concesionario</a></li>";
+            echo"   <li><a href='../php/vista_turnos_concesionario.php'>Turnos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else{
+            echo"<a href='../html/vista_admin.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../php/vista_clientes_admin.php'>Usuarios</a></li>";
+            echo"   <li><a href='../php/vista_concesionarios_admin.php'>Concesionarios</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"</ul> ";
+        }
+        ?>
         </nav>
     </header>
     
@@ -25,7 +48,7 @@
         <h1>Perfil de Usuario</h1>
         <p>Aquí puedes personalizar tu información de perfil</p>
         <?php 
-        include("C:\\xampp\htdocs\Proyecto Final\php\conexion.php");
+        include("..\php\conexion.php");
         $usuario = $_SESSION['usuario_sesion'];
         $contraseña = $_SESSION['contraseña_sesion'];
         $consulta = mysqli_query($conexion, "SELECT NOMBRES, APELLIDOS, CORREO_ELECTRONICO, TELEFONO FROM CLIENTE WHERE USUARIO = '$usuario' AND CONTRASEÑA ='$contraseña'");
@@ -33,7 +56,7 @@
         ?>
         
         <section class="perfil-usuario">
-            <form class="formulario-perfil" action="http://localhost/Proyecto%20Final/php/modificar_perfil.php" method="post">
+            <form class="formulario-perfil" action="../php/modificar_perfil.php" method="post">
                 <div class="campo-formulario">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRES']?>">
@@ -55,7 +78,7 @@
                 </div>
                 
                 <button type="submit" class="boton-guardar">Guardar Cambios</button>
-                <a href="http://localhost/Proyecto%20Final/php/cerrar_sesion.php">Cerrar Sesion</a>
+                
             </form>
         </section>
     </article>
