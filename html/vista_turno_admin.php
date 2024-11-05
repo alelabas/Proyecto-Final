@@ -5,41 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilos.css">
-
+    <link rel="stylesheet" href="">
     <title>ServiNow</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-             <?php if($_SESSION['tipo_usuario'] == 'USUARIO' ){
-            
-            echo"<a href='../html/vista_usuario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
-            echo"<ul class='lista'>";
-            echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
-            echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
-            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
-            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
-            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
-            echo"</ul> ";
-        }
-        else if($_SESSION['tipo_usuario'] == 'CONCESIONARIO' ){
-            echo"<a href='../html/vista_concesionario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
-            echo"<ul class='lista'>";
-            echo"   <li><a href='../html/vista_datos_concesionario.php'>Mi concesionario</a></li>";
-            echo"   <li><a href='../php/vista_turnos_concesionario.php'>Turnos</a></li>";
-            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
-            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
-            echo"</ul> ";
-        }
-        else{
-            echo"<a href='../html/vista_admin.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
-            echo"<ul class='lista'>";
-            echo"   <li><a href='../php/vista_clientes_admin.php'>Usuarios</a></li>";
-            echo"   <li><a href='../php/vista_concesionarios_admin.php'>Concesionarios</a></li>";
-            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
-            echo"</ul> ";
-        }
-        ?>
+            <div>
+                <a href="../vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
+            </div>
+            <ul class="lista">
+               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+            </ul>
         </nav>
     </header>
     <article class="pag_principal">
@@ -55,33 +34,22 @@
         $nombre_concesionario = $resultado1['NOMBRE'];
 
         ?>
-        <div class="reserva-container">
-        <div class="reserva-card">
-            <div class="card-header">
-                <h3>Reserva de Turno para Mantenimiento</h3>
-            </div>
-            <div class="card-body">
-                <form action="../php/modificar_reserva.php" method="POST">
-                <input type="hidden" name="codigo" value= "<?php echo $codigo; ?>" >
-                    <div class="form-group">
-                        <label for="concesionario">Concesionario</label>
-                        <select type="text" id="concesionario" name="concesionario" required>
-                            <?php echo $nombre_concesionario ?>
-                            <option value="<?php echo $nombre_concesionario ?>" selected><?php echo $nombre_concesionario ?></option>
-                            <?php 
-                            $consulta = mysqli_query($conexion, "SELECT * FROM concesionario where NOMBRE != '".$nombre_concesionario."'");
-                            while ($row = mysqli_fetch_assoc($consulta)) {
-                                if($row['NOMBRE'] == $resultado1['NOMBRE']){
-                                    echo "<option value='".$row['NOMBRE']."' selected>".$row['NOMBRE']."</option>";
-                                }
-                                else{
-                                    echo "<option value='".$row['NOMBRE']."'>".$row['NOMBRE']."</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    
+        <section class="perfil-usuario">
+            <form class="formulario-perfil" action="../php/modificar_turno.php" method="post">
+                <input type='hidden' name='codigo' value="<?php echo $codigo?>">
+                <div class="campo-formulario">
+                <label for="opciones">Selecciona un mantenimiento:</label>
+                <select id="opciones" name="mantenimiento" required>
+                    <?php 
+                    $consulta2 = mysqli_query($conexion, "SELECT * FROM MANTENIMIENTO ");
+                    while($fila = mysqli_fetch_array($consulta2)) {
+                        if($resultado['MANT_CODIGO_SERVICIO']=$fila['CODIGO_SERVICIO']){
+                            echo "<option value='".$fila['CODIGO_SERVICIO']."' selected >".$fila['DESCRIPCION']."</option>";
+                        }
+                        else{
+                            echo "<option value='".$fila['CODIGO_SERVICIO']."' >".$fila['DESCRIPCION']."</option>";
+                        }
+                    ?>
                     <div class="form-group">
                         <label for="Mantenimiento">Mantenimiento</label>
                         <select type="text" id="mantenimiento" name="mantenimiento" required>

@@ -12,7 +12,7 @@
         <nav class="navegador">
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             <ul class="lista">
-               <li><a href="vista_clientes_admin.php">Usuarios</a></li>
+               <li><a href="vista_clientes_admin.php">Clientes</a></li>
                <li><a href="vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
@@ -73,7 +73,11 @@
              <div class="tarjeta-vehiculo nuevo-vehiculo">
                 <i class="fa-solid fa-plus"></i>
                 <h3>Agregar Nuevo Turno</h3>
-                <a href="../html/form_reserva_de_turnos.php?concesionario=<?php echo $nombre ?>" class="boton-reservar">Reservar Turno</a>
+                <form action='../html/vista_cargar_turno_admin.php' method='POST'>
+                        <input type='hidden' name='codigo' value="<?php echo $codigo?>">
+                        <input type='hidden' name='nombre' value="<?php echo $nombre?>">
+                        <button type='submit' class='boton-agregar'>Agregar</button>
+                </form>
         </div>
         </section>
     </article>

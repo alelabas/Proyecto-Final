@@ -14,7 +14,7 @@
         <nav class="navegador">
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
            <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
+               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
                <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>

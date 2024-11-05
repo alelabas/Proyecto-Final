@@ -34,13 +34,7 @@
             $consulta = mysqli_query($conexion, "DELETE FROM VEHICULO WHERE PATENTE = '$patente'");
             include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
         }
-        if($_SESSION['tipo_usuario']=='USUARIO'){
-            include("../html/vista_mis_vehiculos.php");
-        }
-        else{
-            include("../php/vista_clientes_admin.php");
-        }
-        
+        include("..\php\\vista_clientes_admin.php");
     ?>
 
     </body>

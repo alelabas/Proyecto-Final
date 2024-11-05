@@ -37,19 +37,6 @@
         header('Location: ../html/vista_admin.php');
         exit(); 
     }
-    else if ($resultado != 0 && $respuesta['TIPO_CLIENTE'] == 'CONCESIONARIO')
-            {
-                $_SESSION['tipo_usuario'] = $respuesta['TIPO_CLIENTE'];
-                $_SESSION['nombre_sesion'] = $respuesta['NOMBRES'];
-                $_SESSION['apellido_sesion'] = $respuesta['APELLIDOS'];
-                $_SESSION['correo_sesion'] = $respuesta['CORREO_ELECTRONICO'];
-                $_SESSION['telefono_sesion'] = $respuesta['TELEFONO'];
-                $_SESSION['usuario_sesion'] = $usuario;
-                $_SESSION['contraseña_sesion'] = $contraseña;
-                $_SESSION['id_sesion'] = $respuesta['CODIGO_CLIENTE'];
-
-                include("../html/vista_concesionario.php");
-            }
     else
     {
         echo "Usuario no registrado";

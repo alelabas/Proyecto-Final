@@ -5,20 +5,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="estilos.css">
+        <link rel="stylesheet" href="../estilos.css">
         <title>ServiNow - Reservar Turno</title>
     </head>
     <body>
         
         <header>
             <nav class="navegador">
-                <a href="html/vista_usuario.php"><img id="inicio" src="img/icono.webp" alt="ServiNow" height="80"></a>
+                <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
                 <ul class="lista">
-                    <li><a href="#">Reservar Turno</a></li>
-                    <li><a href="html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                    <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                    <li><a href="vista_reservar_turno.php">Reservar Turno</a></li>
+                    <li><a href="vista_turnos_asignados.php">Turnos Asignados</a></li>
+                    <li><a href="vista_mis_vehiculos.php">Mis Vehículos</a></li>
                     <li><a href="../php/salir.php">Cerrar sesion</a></li>
-                    <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                    <li><a href="vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
                 </ul>
             </nav>
         </header>
