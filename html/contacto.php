@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../estilos.css">
         <title>ServiNow - Reservar Turno</title>
     </head>
-    <body>
+    <body id="vista-portada-tres">
         
         <header>
             <nav class="navegador">

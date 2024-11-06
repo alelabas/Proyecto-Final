@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="estilos.css">
     <title>ServiNow</title>
 </head>
-<body>
+<body id="vista-portada-uno">
     <header>
         <nav class="navegador">
             <div>
@@ -18,45 +18,63 @@
             </ul>
         </nav>
     </header>
-    <article class="pag_principal">
-        <h1>Bienvenido a ServiNow</h1>
+    <article class="pag_principal" >
+        <h1 class="inicio">Bienvenido a ServiNow</h1>
         <p>Tu solución para servicios de automóviles</p>
         <section class="servicios">
             <h2>Acerca del proyecto</h2>
             <p>ServiNow es una plataforma web que permite a los usuarios agendar servicios de mantenimiento y reparación de automóviles de manera fácil y conveniente. Ofrecemos una amplia variedad de servicios para todos los tipos de vehículos, desde reparaciones menores hasta servicios de alto rendimiento. Nuestro objetivo es brindar una experiencia de usuario excepcional, garantizando la calidad y eficiencia de nuestros servicios, ademas de ayudar al mercado de automoviles usados a ser mas transparente y eficiente. El sistema cuenta con un panel de administración para los operadores, que les permite gestionar los servicios, los vehiculos y los usuarios. los usuarios pueden registrarse y elegir el tipo de servicio que necesitan, elegir la fecha y hora de realizacion del mismo y el lugar donde sera realizado. Ademas, los usuarios pueden calificar y revisar los servicios ya realizados, brindando una valoracion general del servicio recibido. Los concesionarios pueden registrarse y personalizar su perfil en la plataforma, mostrando toda la información relevante al cliente, ademas de poder ver las valoraciones y reseñas dejadas por los clientes. </p>
         </section>
-        <section class="servicios" id="opciones_disponibles">
+
+        <section class="trabajos">
             <h2>Servicios disponibles</h2>
-            <ul>
-                <img src="http://localhost/Proyecto%20Final/img/automovil-con-llave.png" alt="imagen herramientas">
-                <li>Mantenimiento preventivo</li>
-                <img src="http://localhost/Proyecto%20Final/img/mecanico.png" alt="Imagen herramientas">
-                <li>Reparaciones generales</li>
-                <img src="http://localhost/Proyecto%20Final/img/mecanismo.png" alt="Imagen herramientas">
-                <li>Reparaciones especializadas</li>
+            <div>
+                <img src="img/automovil-con-llave.png" alt="imagen herramientas">
+                <h3>Mantenimiento preventivo</h3>
+            </div>
+            <div>
+                <img src="img/mecanico.png" alt="Imagen herramientas">
+                <h3>Reparaciones generales</h3>
+            </div>
+            <div>
+                <img src="img/mecanismo.png" alt="Imagen herramientas">
+                <h3>Reparaciones especializadas</h3>
+            </div>
                 
-            </ul>
         </section>
-        <section class="servicios">
+
+        
+        <section class="trabajos">
             <h2>¿Por qué elegirnos?</h2>
-            <ul>
-                <img src="http://localhost/Proyecto%20Final/img/experiencia.png" alt="">
-                <li>Experiencia en el mercado</li>
-                <img src="http://localhost/Proyecto%20Final/img/sevicio_cliente.png" alt="">
-                <li>Calidad y eficiencia</li>
-                <img src="http://localhost/Proyecto%20Final/img/atencion.png" alt="">
-                <li>Atención al cliente</li>
-            </ul>
+            <div>
+                <img src="img/experiencia.png" alt="Imagen ilustrativa">
+                <h3>Experiencia en el mercado</h3>
+            </div>
+            <div>
+                <img src="img/eficiencia.png" alt="Imagen ilustrativa">
+                <h3>Calidad y eficiencia</h3>
+            </div>
+            <div>
+                <img src="img/atencion.png" alt="Imagen ilustrativa">
+                <h3>Atención al cliente</h3>
+            </div>
+
         </section>
         <section class="servicios">
             <h2>Únete a nuestra comunidad</h2>
             <p>Regístrate hoy y descubre una nueva forma de gestionar tus servicios de automóviles. ¡Únete a ServiNow y disfruta de una experiencia de usuario excepcional!</p>
-            <a href="#">Registrarse</a>
+            <a href="html/vista_registrarte.html" class="boton-reservar" style="width: 30%;">Registrarse</a>
         </section>
         <section class="servicios">
             <h2>Contactanos</h2>
             <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
-            <a href="#">Contactar</a>
+
+            <div class="logos">
+                <a target="_blank" href="https://www.instagram.com/"><img src="img/instagram.png" alt="Logo instagram"></a>
+                <a target="_blank" href="https://x.com/"><img src="img/twitter.png" alt="Logo Twitter"></a>
+                <a href=""><img src="img/email.png" alt="Mail"></a>
+            </div>
+
         </section>
         <section class="servicios">
             <h2>Acerca de nosotros</h2>

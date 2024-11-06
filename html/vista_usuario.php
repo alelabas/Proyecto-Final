@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Panel de Usuario</title>
 </head>
-<body>
+<body id="vista-portada-dos">
     <header>
         <nav class="navegador">
             <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
