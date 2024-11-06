@@ -1,23 +1,14 @@
-<?php session_start()?>
 <!DOCTYPE html>
-<html>
-    <head>
+<?php
+    $correo = $_POST['correo'];
+    $titulo = $_POST['titulo'];
+    $mensaje = $_POST['mensaje'];
 
-    </head>
-    <body>
-        <?php
+    include("conexion.php");
 
-            $codigo = $_SESSION['id'];
-            $titulo = $_POST['titulo'];
-            $mensaje = $_POST['mensaje'];
-
-            include("conexion.php");
-
-            $consulta = mysqli_query($conexion, "INSERT INTO CONSULTAS (CODIGO_CLIENTE, TITULO, MENSAJE) VALUES ('$codigo', '$titulo', '$mensaje')");
-
-            header("Location: ../html/contacto.php");
-            echo "Consulta enviada";
-
-        ?>
-    </body>
-</html>
+    $consulta = mysqli_query($conexion, "INSERT INTO MENSAJE (TITULO, MENSAJE, CORREO_ELECTRONICO) VALUES ('$titulo', '$mensaje', '$correo')");
+    ?>
+    <script>
+    alert('El mensaje ha sido enviado correctamente');
+    window.location.href = '../index.html';
+    </script>
