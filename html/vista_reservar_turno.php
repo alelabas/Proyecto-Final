@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/Proyecto%20Final/estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Reservar Turno</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
-            <a href="http://localhost/Proyecto%20Final/html/vista_usuario.php"><img id="inicio" src="http://localhost/Proyecto%20Final/img/icono.webp" alt="ServiNow" height="80"></a>
+            <a href="../html/vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
                 <li><a href="#">Reservar Turno</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                <li><a href="http://localhost/Proyecto%20Final/html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+                <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -25,26 +26,37 @@
         <p>Selecciona un concesionario para reservar tu turno</p>
         
         <section class="concesionarios">
+
+            <?php 
+
+                include("..\php\conexion.php");
+
+                $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO");
+
+                $resultado = mysqli_num_rows($consulta);
+
+                if ($resultado != 0)
+                {
+
+                    $respuesta = mysqli_fetch_all($consulta);
+                    foreach ($respuesta as $concesionario)
+                    {
+            ?>
+
             <div class="tarjeta-concesionario">
-                <img src="http://localhost/Proyecto%20Final/img/concesionario1.jpg" alt="Concesionario 1">
-                <h3>AutoServicio Express</h3>
-                <p>Especialistas en mantenimiento rápido y eficiente.</p>
-                <a href="#" class="boton-reservar">Reservar Turno</a>
+                <img src="../img/concesionario.jpg" alt="Concesionario">
+                <?php
+                    echo "<h3>$concesionario[1]</h3>";
+                    echo "<p><strong>Direccion:</strong> $concesionario[2]</p>";
+                    echo "<p><strong>Numero de telefono:</strong> $concesionario[3]</p>";
+                    echo "<p><strong>Correo electronico:</strong> $concesionario[4]</p>";
+                    ?>
+                <a href="form_reserva_de_turnos.php?concesionario=<?php echo $concesionario[1] ?>" class="boton-reservar">Reservar Turno</a>
             </div>
-            
-            <div class="tarjeta-concesionario">
-                <img src="http://localhost/Proyecto%20Final/img/concesionario2.jpg" alt="Concesionario 2">
-                <h3>MecánicosPro</h3>
-                <p>Servicio integral para todas las marcas y modelos.</p>
-                <a href="#" class="boton-reservar">Reservar Turno</a>
-            </div>
-            
-            <div class="tarjeta-concesionario">
-                <img src="http://localhost/Proyecto%20Final/img/concesionario3.jpg" alt="Concesionario 3">
-                <h3>TallerVIP</h3>
-                <p>Atención personalizada y servicios premium.</p>
-                <a href="#" class="boton-reservar">Reservar Turno</a>
-            </div>
+                <?php
+                    }
+                }
+                ?>
         </section>
     </article>
     

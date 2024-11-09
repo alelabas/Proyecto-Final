@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php @session_start()?>
 <html>
     <head>
 
@@ -7,8 +7,8 @@
         
     <?php
 
-        $usuario = $_SESSION['usuario'];
-        $contraseña = $_SESSION['contraseña'];
+        $usuario = $_SESSION['usuario_sesion'];
+        $contraseña = $_SESSION['contraseña_sesion'];
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $email = $_POST['email'];
@@ -24,13 +24,12 @@
         {
             $consulta = mysqli_query($conexion, "UPDATE CLIENTE SET NOMBRES = '$nombre', APELLIDOS = '$apellido', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono WHERE USUARIO = '$usuario' AND CONTRASEÑA = '$contraseña'");
             echo "Cambios realizados correctamente";
-            include("C:\\xampp\htdocs\Proyecto Final\html\\vista_perfil.php");
         }
         else 
         {
             echo "Cambios no realizados";
-            include("C:\\xampp\htdocs\Proyecto Final\html\\vista_perfil.html");    
         }
+        include("..\html\\vista_perfil.php");
     ?>
 
     </body>

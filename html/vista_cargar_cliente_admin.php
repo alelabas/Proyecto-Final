@@ -1,27 +1,33 @@
+<?php if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}?>
+<!-- Vista para el admin -->
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse - ServiNow</title>
     <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="">
+    <title>ServiNow</title>
 </head>
 <body>
     <header>
         <nav class="navegador">
             <div>
-                <a href="../index.html"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
+                <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             </div>
             <ul class="lista">
-                <li><a href="../html/vista_registrarte.html">Registrarse</a></li>
-                <li><a href="../html/vista_iniciar_sesion.html">Iniciar sesión</a></li>
-            </ul>
+               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+            </ul>        
         </nav>
     </header>
-    
     <main class="contenedor-formulario">
-        <h1>Registrarse</h1>
+        <h1>Nuevo cliente</h1>
         <form action="../php/registro.php" method="post" class="formulario-login">
+            <input type='hidden' name='tipo_usuario' value="ADMIN">    
             <div class="campo-formulario">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -50,13 +56,13 @@
                 <label for="confirmar-password">Confirmar contraseña:</label>
                 <input type="password" id="confirmar-password" name="confirmar-password" required>
             </div>
-            <button type="submit" class="boton-submit">Registrarse</button>
+            <button type="submit" class="boton-submit">Registrar</button>
+        
         </form>
-        <p>¿Ya tienes una cuenta? <a href="../html/vista_iniciar_sesion.html">Inicia sesión aquí</a></p>
     </main>
-
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
 </html>
