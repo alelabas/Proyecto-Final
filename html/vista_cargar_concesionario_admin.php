@@ -17,7 +17,7 @@
                 <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             </div>
             <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
                <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>        
@@ -42,14 +42,17 @@
                 <label for="nombre">Telefono:</label>
                 <input type="number" id="telefono" name="telefono" required>
             </div>
-            <!--Suponiendo que el usuario de concesionario se guarde en la tabla de concesionario que el admin cree la contraseña para el concesionario que crea-->
             <div class="campo-formulario">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="campo-formulario">
-                <label for="confirmar-password">Confirmar contraseña:</label>
-                <input type="password" id="confirmar-password" name="confirmar-password" required>
+                <label for="usuario">Usuario asignado:</label>
+                <select id="opciones" name="codigo_usuario" required>
+                <?php 
+                include('../php/conexion.php');
+                    $consulta = mysqli_query($conexion, 'SELECT * FROM CLIENTE' );
+                        while($fila = mysqli_fetch_array($consulta)) {
+                            echo "<option value='".$fila['CODIGO_CLIENTE']."'>".$fila['USUARIO']." </option>";
+                        }
+                ?>
+                </select>
             </div>
             <button type="submit" class="boton-submit">Crear</button>
         </form>

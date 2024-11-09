@@ -1,6 +1,4 @@
-<?php if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
+<?php @session_start();?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,12 +7,12 @@
     <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Turnos Asignados</title>
 </head>
-<body>
+<body onload="buscarCliente()">
     <header>
         <nav class="navegador">
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
                <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
@@ -22,7 +20,7 @@
     </header>
     
     <article class="pag_principal">
-        <h1>Clientes</h1>
+        <h1>USUARIOS</h1>
         <section class="concesionarios"> 
         <input type="text" id="buscar" onkeyup="buscarCliente()" placeholder="Buscar" class="tarjeta-concesionario">
         </section>

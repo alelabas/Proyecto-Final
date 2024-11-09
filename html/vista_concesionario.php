@@ -11,26 +11,27 @@
 <body>
     <header>
         <nav class="navegador">
-            <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
+            <a href="../html/vista_concesionario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
            <ul class="lista">
-               <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
-               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../html/vista_datos_concesionario.php">Mi concesionario</a></li>
+               <li><a href="../php/vista_turnos_concesionario.php">Turnos</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+               <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
     
     <article class="pag_principal">
-        <h1>Bienvenido a tu Panel de Administrador</h1>
+        <h1>Bienvenido <?php echo $_SESSION['usuario_sesion']?> a tu panel de concesionario</h1>
         
         <section id="reservar-turno" class="servicios">
-            <a href="../php/vista_clientes_admin.php"> <h2>Clientes</h2> </a>
-            <p>Visualiza y gestiona el perfil de un cliente.</p>
+            <a href="../html/vista_datos_concesionario.php"> <h2>Mi concesionario</h2> </a>
+            <p>Visualiza y gestiona los datos de tu concesionario.</p>
         </section>
         
         <section id="turnos-asignados" class="servicios">
-            <a href="../php/vista_concesionarios_admin.php"> <h2>Concesionarios</h2> </a>
-            <p>Visualiza y gestiona los concesionarios.</p>
+            <a href="../php/vista_turnos_concesionario.php"> <h2>Turnos</h2> </a>
+            <p>Visualiza y gestiona los turnos de tu concesionario.</p>
         </section>
         
     </article>

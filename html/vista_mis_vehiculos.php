@@ -48,7 +48,7 @@
                         echo"<p><strong>Año:</strong> $vehiculo[3]</p>";
                         echo"<p><strong>Patente:</strong> $vehiculo[0]</p>";
                     ?>
-                <a href="#" class="boton-editar">Editar</a>
+                <a href="../html/vista_vehiculo_admin.php?patente=<?php echo $vehiculo[0] ?>" class="boton-editar">Editar</a>
                 </div>
                     <?php
                     }
@@ -92,56 +92,6 @@
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
-
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .contenido-modal {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .cerrar-modal {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .cerrar-modal:hover,
-        .cerrar-modal:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal h2 {
-            margin-top: 0;
-            color: #333;
-        }
-
-        #formularioAgregarVehiculo {
-            margin-top: 20px;
-        }
-    </style>
-
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

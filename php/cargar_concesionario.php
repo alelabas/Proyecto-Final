@@ -12,10 +12,10 @@
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
             $contraseña = $_POST['password'];
-
+            $usuario = $_POST['usuario'];
             include("conexion.php");
             // Se omitio de momento la contraseña ya que no esta definido donde guardarla.
-            $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO) VALUES ('$nombre', '$direccion', '$telefono', '$email')");
+            $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO) VALUES ('$nombre', '$direccion', '$telefono', '$email','$usuario')");
             header("Location:../php/vista_concesionarios_admin.php");
         ?>
     </body>
