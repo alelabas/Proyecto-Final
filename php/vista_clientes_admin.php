@@ -1,4 +1,11 @@
-<?php @session_start();?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +33,7 @@
         </section>
         <section class="concesionarios"> 
             <div id="resultado" class="concesionarios">
-                <!-- Aqu� se cargar�n los resultados -->
+                <!-- Aqu� se cargaran los resultados -->
             </div>
         </section>
     </article>

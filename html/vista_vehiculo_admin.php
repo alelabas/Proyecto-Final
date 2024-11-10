@@ -1,4 +1,11 @@
-<?php @session_start();?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +25,7 @@
             echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
             echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
             echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+            echo' <li><a href="../html/contacto.php">Contactanos</a></li>';
             echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
             echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
             echo"</ul> ";
@@ -57,11 +65,11 @@
         $resultado = mysqli_fetch_array($consulta);
         ?>
         <section class="perfil-usuario">
-            <form class="formulario-perfil" action="../php/modificar_vehiculo.php" method="post">
+            <form class="formulario-perfil" id="formulario-usuario"action="../php/modificar_vehiculo.php" method="post">
                
                 <div class="campo-formulario">
                     <label for="patente">Patente: <?php echo $resultado['PATENTE']?> </label>
-                     <input type='hidden' name='patente' value="<?php echo $resultado['PATENTE']?>">
+                    <input type='hidden' name='patente' value="<?php echo $resultado['PATENTE']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="marca">Marca:</label>
@@ -75,9 +83,8 @@
                     <label for="anio">Año:</label>
                     <input type="text" id="anio" name="anio" value="<?php echo $resultado['ANIO']?>" required>
                 </div>
-                <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>
-                <button type="submit" name="accion" value="borrar" class="boton-guardar">Borrar vehiculo</button>
-
+                <button type="submit" name="accion" value="modificar" class="boton-guardar" onclick="activarRequeridos(true)">Guardar Cambios</button>
+                <button type="submit" name="accion" value="borrar" class="boton-guardar" onclick="activarRequeridos(false)">Borrar vehiculo</button>
             </form>
         </section>
     </article>
@@ -85,5 +92,20 @@
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+    <script>
+        function activarRequeridos(requiereDatos) {
+            // Selecciona todos los campos de entrada dentro del formulario
+            const formulario = document.getElementById("formulario-usuario");
+            const inputs = formulario.querySelectorAll("input[type='text'], input[type='email'], input[type='number']");
+            // Cambia el atributo required según el parámetro
+            inputs.forEach(input => {
+                if (requiereDatos) {
+                    input.setAttribute("required", "required");
+                } else {
+                    input.removeAttribute("required");
+                }
+            });
+        }
+    </script>
 </body>
 </html>

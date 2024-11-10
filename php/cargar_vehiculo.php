@@ -28,7 +28,7 @@
             }
             else
             {
-                $consulta = mysqli_query($conexion, "INSERT INTO VEHICULO VALUES ('$patente', '$marca', '$modelo', '$anio', '$id_usuario')");
+                $consulta = mysqli_query($conexion, "INSERT INTO VEHICULO VALUES ('$patente', '$marca', '$modelo', '$anio', '$id_usuario', 0)");
             }
 
             if($_SESSION['tipo_usuario'] == 'ADMIN'){

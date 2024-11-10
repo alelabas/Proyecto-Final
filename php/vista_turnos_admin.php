@@ -1,5 +1,11 @@
-<?php @session_start();?>
-<!DOCTYPE html>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +38,7 @@
                 $i = 0;
                 $codigo = $_POST['codigo'];
                 include("conexion.php");
-                $consulta = mysqli_query($conexion, "SELECT * FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'AND ESTADO_TURNO != 'CANCELADO' ");
+                $consulta = mysqli_query($conexion, "SELECT * FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'AND ESTADO_TURNO != 'CANCELADO'  ");
                 $resultado = mysqli_num_rows($consulta);
                 if ($resultado != 0) {
                     while($fila = mysqli_fetch_array($consulta)) {
@@ -40,6 +46,7 @@
                         $consulta2 = mysqli_query($conexion, "SELECT M.DESCRIPCION FROM MANTENIMIENTO M JOIN TURNO T WHERE M.CODIGO_SERVICIO = T.MANT_CODIGO_SERVICIO ");
                         $mantenimiento = mysqli_fetch_array($consulta2);
                         echo "<h3>" . $mantenimiento[0] . "</h3>";
+                        echo "<strong>Estado del turno:</strong> ". $fila['ESTADO_TURNO'] ;
                         echo "<p><strong>Fecha:</strong> " . $fila['FECHA_TURNO'] . "</p>";
                         echo "<p><strong>Hora:</strong> " . $fila['HORA_TURNO'] . "</p>";
                         echo "<p><strong>Concesionario:</strong> " . $_POST['nombre'] . "</p>";

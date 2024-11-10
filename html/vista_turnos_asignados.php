@@ -1,4 +1,10 @@
 <?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'USUARIO' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
 include('../php/conexion.php');?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,6 +22,7 @@ include('../php/conexion.php');?>
                 <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
                 <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
                 <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
                 <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
                 <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>

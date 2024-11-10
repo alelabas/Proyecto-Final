@@ -1,11 +1,17 @@
-<?php @session_start();?>
-<!DOCTYPE html>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'CONCESIONARIO' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilos.css">
-    <title>ServiNow - Panel de Usuario</title>
+    <title>ServiNow - Panel de Concesionario</title>
 </head>
 
 <body>

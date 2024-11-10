@@ -14,7 +14,7 @@
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
                 if($_SESSION['tipo_usuario'] == 'ADMIN'){
-                    $codigo_usuario = $_POST['codigo_usuario'];
+                      $codigo_usuario = $_POST['codigo_usuario'];
                 }
                 else{
                     $codigo_usuario = $_SESSION['id_sesion'];
@@ -28,8 +28,7 @@
         if($_POST['accion'] =='modificar'){
             if ($resultado != 0)
             {
-                
-                $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono , CODIGO_USUARIO = '$codigo_usuario' WHERE CODIGO_CONCESIONARIO = '$codigo'");
+                $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono , CODIGO_USUARIO = $codigo_usuario WHERE CODIGO_CONCESIONARIO = '$codigo'");
                 if ($consulta) {
                     echo "Cambios realizados correctamente";
                 } 
@@ -43,8 +42,9 @@
             }
         }
         else{
-            $consulta = mysqli_query($conexion, "DELETE FROM TURNO WHERE CONCESIONARIO_CODIGO = '$codigo'");
-            $consulta = mysqli_query($conexion, "DELETE FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
+            $consulta = mysqli_query($conexion, "UPDATE TURNO SET ESTADO_TURNO = 'CANCELADO'WHERE CONCESIONARIO_CODIGO = '$codigo'");
+            $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET BORRADO = 1, CODIGO_USUARIO = NULL WHERE CODIGO_CONCESIONARIO = '$codigo'");
+
         }
         if($_SESSION['tipo_usuario'] == 'CONCESIONARIO'){
             include("../html/vista_datos_concesionario.php");

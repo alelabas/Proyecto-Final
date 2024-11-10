@@ -1,4 +1,11 @@
-<?php @session_start();?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,8 +31,8 @@
         <h1>Bienvenido a tu Panel de Administrador</h1>
         
         <section id="reservar-turno" class="servicios">
-            <a href="../php/vista_clientes_admin.php"> <h2>Clientes</h2> </a>
-            <p>Visualiza y gestiona el perfil de un cliente.</p>
+            <a href="../php/vista_clientes_admin.php"> <h2>Usuarios</h2> </a>
+            <p>Visualiza y gestiona el perfil de un usuario.</p>
         </section>
         
         <section id="turnos-asignados" class="servicios">

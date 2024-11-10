@@ -29,7 +29,8 @@
             }
         }
         else{
-            $consulta = mysqli_query($conexion, "DELETE FROM VEHICULO WHERE PATENTE = '$patente'");
+            $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET BORRADO = 1 WHERE PATENTE = '$patente'");
+            $consulta = mysqli_query($conexion, "UPDATE TURNO SET ESTADO_TURNO = 'CANCELADO' WHERE VEHICULO_PATENTE = '$patente'");
         }
         if($_SESSION['tipo_usuario']=='USUARIO'){
             include("../html/vista_mis_vehiculos.php");

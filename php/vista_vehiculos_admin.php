@@ -1,4 +1,11 @@
-<?php @session_start();?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +38,7 @@
                 $i = 0;
                 $codigo = $_POST['codigo'];
                 include("conexion.php");
-                $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$codigo' ");
+                $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$codigo' AND BORRADO = 0 ");
                 $resultado = mysqli_num_rows($consulta);
                 if ($resultado != 0) {
                     while($fila = mysqli_fetch_array($consulta)) {

@@ -1,5 +1,11 @@
-<?php session_start()?>
-<!DOCTYPE html>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'USUARIO' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +21,7 @@
                 <li><a href="#">Reservar Turno</a></li>
                 <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
                 <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
                 <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
                 <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
@@ -31,7 +38,7 @@
 
                 include("..\php\conexion.php");
 
-                $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO");
+                $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE BORRADO = 0");
 
                 $resultado = mysqli_num_rows($consulta);
 
@@ -44,7 +51,7 @@
             ?>
 
             <div class="tarjeta-concesionario">
-                <img src="../img/concesionario.jpg" alt="Concesionario">
+                
                 <?php
                     echo "<h3>$concesionario[1]</h3>";
                     echo "<p><strong>Direccion:</strong> $concesionario[2]</p>";

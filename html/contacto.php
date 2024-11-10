@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php @session_start()?>
 <!DOCTYPE html>
 <html>
 
@@ -12,13 +12,29 @@
         
         <header>
         <nav class="navegador">
-            <div>
-                <a href="../index.html"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
+        <?php 
+        if (isset ($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USUARIO' ){
+            echo'<a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
+            <ul class="lista">
+                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
+                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
+                <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+            </ul>';
+        }
+        else{
+            echo'<div>
+                <a href="../index.html"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             </div>
             <ul class="lista">
-                <li><a href="html/vista_registrarte.html">Registrarse</a></li>
-                <li><a href="html/vista_iniciar_sesion.html">Iniciar sesión</a></li>
-            </ul>
+                <li><a href="../html/vista_registrarte.php">Registrarse</a></li>
+                <li><a href="../html/vista_iniciar_sesion.php">Iniciar sesión</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
+            </ul>';
+        }
+        ?>
         </nav>
         </header>
 
@@ -27,7 +43,7 @@
             <form action="../php/enviar_contacto.php" method="post" class="formulario-login">
                 <div class="campo-formulario">
                     <label for="correo">Correo Electronico:</label>
-                    <input type="text" id="correo" name="correo" value="<?php echo  $_SESSION['correo_sesion']; ?>" required readonly>
+                    <input type="text" id="correo" name="correo" value="<?php echo isset( $_SESSION['correo_sesion']) ? $_SESSION['correo_sesion'] : ''; ?>" required readonly>
                 </div>
                 <div class="campo-formulario">
                     <label for="titulo">Titulo:</label>
