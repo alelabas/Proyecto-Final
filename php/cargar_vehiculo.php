@@ -29,10 +29,7 @@
             else
             {
                 $consulta = mysqli_query($conexion, "INSERT INTO VEHICULO VALUES ('$patente', '$marca', '$modelo', '$anio', '$id_usuario', 0)");
-<<<<<<< Updated upstream
-=======
                 echo "<script>alert('Vehículo registrado exitosamente');</script>";
->>>>>>> Stashed changes
             }
 
             if($_SESSION['tipo_usuario'] == 'ADMIN'){
