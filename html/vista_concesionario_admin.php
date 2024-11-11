@@ -33,6 +33,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
         <?php 
         include("..\php\conexion.php");
         $codigo = $_POST['codigo'];
+
         $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_CONCESIONARIO = '$codigo'");
         $resultado = mysqli_fetch_assoc($consulta);
 
@@ -63,17 +64,20 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                     <label for="opciones">Selecciona un usuario para administrar el concesionario:</label>
                     <select id="opciones" name="codigo_usuario" required>
                         <?php 
-                        $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = 'CONCESIONARIO' AND BORRADO = 0");
+                        if($resultado['CODIGO_USUARIO']!=NULL){
+                            $consulta1 = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE CODIGO_CLIENTE =". $resultado['CODIGO_USUARIO']);
+                            $fila = mysqli_fetch_array($consulta1);
+                            echo "<option value='".$fila['CODIGO_CLIENTE']."' selected>".$fila['USUARIO']." </option>";
+                        }
                         echo "<option value= NULL >Sin asignar</option>";
+                        $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = 'CONCESIONARIO' AND BORRADO = 0");
+                        $fila = mysqli_fetch_array($consulta);
+                        $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO ");
+                        $resultado = mysqli_fetch_array($consulta1);
                         while($fila = mysqli_fetch_array($consulta)) {
-                            $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_USUARIO = ".$fila['CODIGO_CLIENTE']);
+                            $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_USUARIO =". $fila['CODIGO_CLIENTE'] );
                             if(!($resultado = mysqli_num_rows($consulta1)) ){
-                                if($resultado['CODIGO_USUARIO']==$fila['CODIGO_CLIENTE']){
-                                    echo "<option value='".$fila['CODIGO_CLIENTE']."' selected>".$fila['USUARIO']." </option>";
-                                }
-                                else{
                                     echo "<option value='".$fila['CODIGO_CLIENTE']."'>".$fila['USUARIO']." </option>";
-                                }
                             }
                         }
                         ?>

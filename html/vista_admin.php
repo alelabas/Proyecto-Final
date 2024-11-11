@@ -1,6 +1,6 @@
 <?php @session_start();
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
-    // Redirige al usuario a la página de login si no está autenticado
+    // Redirige al usuario a la pï¿½gina de login si no estï¿½ autenticado
     include("../php/cerrar_sesion.php");
     header("Location: ../index.html");
     exit();
@@ -14,7 +14,6 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
     <link rel="stylesheet" href="../estilos.css">
     <title>ServiNow - Panel de Usuario</title>
 </head>
-
 <body>
     <header>
         <nav class="navegador">
@@ -39,14 +38,11 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             <a href="../php/vista_concesionarios_admin.php"> <h2>Concesionarios</h2> </a>
             <p>Visualiza y gestiona los concesionarios.</p>
         </section>
-        
     </article>
-
     
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
 </body>
-    
 </html>

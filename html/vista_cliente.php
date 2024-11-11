@@ -42,23 +42,23 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                 <input type='hidden' name='codigo' value="<?php echo $resultado['CODIGO_CLIENTE']?>" >
                 <div class="campo-formulario">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" value="<?php echo $resultado['USUARIO']?>" required>
+                    <input type="text" id="usuario" name="usuario" value="<?php echo $resultado['USUARIO']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="nombres">Nombres:</label>
-                    <input type="text" id="nombres" name="nombres" value="<?php echo $resultado['NOMBRES']?>" required>
+                    <input type="text" id="nombres" name="nombres" value="<?php echo $resultado['NOMBRES']?>">
                 </div>
                  <div class="campo-formulario">
                     <label for="apellidos">Apellidos:</label>
-                    <input type="text" id="apellidos" name="apellidos" value="<?php echo $resultado['APELLIDOS']?>" required>
+                    <input type="text" id="apellidos" name="apellidos" value="<?php echo $resultado['APELLIDOS']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>" required>
+                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>">
                 </div>
                 <div class="campo-formulario">
                     <label for="direccion">Telefono:</label>
-                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
+                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>">
                 </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar" onclick="activarRequeridos(true)">Guardar Cambios</button>
                 <button type="submit" name="accion" value="borrar" class="boton-guardar" onclick="activarRequeridos(false)">Borrar Perfil</button>

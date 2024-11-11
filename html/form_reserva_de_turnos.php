@@ -92,14 +92,8 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
 
                     <div class="form-group">
                         <label for="hora">Hora del Turno</label>
-                        <select type="text" id="hora" name="hora" required>
-                            <option value="">Seleccione una hora</option>
-                            <?php
-                            for ($i = 8; $i <= 17; $i++) {
-                                echo "<option value='$i:00'>$i:00</option>";
-                                echo "<option value='$i:30'>$i:30</option>";
-                            }
-                            ?>
+                        <select id="hora" name="hora">
+                            <!-- Opciones para las horas -->
                         </select>
                     </div>
 
@@ -108,7 +102,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
                         <select type="text" id="vehiculo" name="vehiculo" required>
                         <?php 
                             if($_SESSION['tipo_usuario'] == 'USUARIO'){
-                                $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo WHERE CODIGO_PROPIETARIO = '".$_SESSION['id_sesion']."'");
+                                $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo WHERE CODIGO_PROPIETARIO = '".$_SESSION['id_sesion']."' AND BORRADO = 0");
                             }
                             else{
                                 $consulta = mysqli_query($conexion, "SELECT * FROM vehiculo ");
@@ -133,6 +127,71 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+    <script>
+        var hoy = new Date();
+        var dia = String(hoy.getDate()).padStart(2,0);
+        var mes = String(hoy.getMonth() + 1).padStart(2,0);
+        var anio = String(hoy.getFullYear());
+
+        var fechaActual = anio + '-' + mes + '-' + dia;
+
+        document.getElementById('fecha').setAttribute('min', fechaActual);
+
+        var horaSelect = document.getElementById('hora');
+        for (var h = 8; h < 19; h++) {
+            for (var m = 0; m < 60; m += 30) {
+                var hora = String(h).padStart(2, '0');
+                var minuto = String(m).padStart(2, '0');
+                var option = document.createElement('option');
+                option.value = hora + ':' + minuto;
+                option.textContent = hora + ':' + minuto;
+                horaSelect.appendChild(option);
+            }
+        }
+
+        // Función para validar la hora
+        function validarHora() {
+            var fechaSeleccionada = document.getElementById('fecha').value;
+            var horaSelect = document.getElementById('hora');
+            
+            if (fechaSeleccionada === fechaActual) {
+                var ahora = new Date();
+                var horas = ahora.getHours();
+                var minutos = ahora.getMinutes();
+
+                // Redondea los minutos al intervalo más cercano de 30 minutos
+                if (minutos < 30) {
+                    minutos = 30;
+                } else {
+                    minutos = 0;
+                    horas += 1;
+                }
+                
+                var horaActual = String(horas).padStart(2, '0') + ':' + String(minutos).padStart(2, '0');
+
+                // Deshabilita opciones de hora anteriores a la hora actual
+                for (var i = 0; i < horaSelect.options.length; i++) {
+                    if (horaSelect.options[i].value < horaActual) {
+                        horaSelect.options[i].disabled = true;
+                    } else {
+                        horaSelect.options[i].disabled = false;
+                    }
+                }
+            } else {
+                // Habilita todas las opciones si la fecha no es hoy
+                for (var i = 0; i < horaSelect.options.length; i++) {
+                    horaSelect.options[i].disabled = false;
+                }
+            }
+        }
+        
+        // Llama a validarHora cuando la fecha cambia
+        document.getElementById('fecha').addEventListener('change', validarHora);
+
+        // Llama a validarHora al cargar la página para establecer correctamente el min de la hora si la fecha es hoy
+        validarHora();
+        
+    </script>
 </body>
 </html>
 

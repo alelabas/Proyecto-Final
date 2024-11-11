@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../estilos.css">
         <title>ServiNow - Reservar Turno</title>
     </head>
-    <body>
+    <body id="vista-portada-tres">
         
         <header>
         <nav class="navegador">
@@ -43,7 +43,7 @@
             <form action="../php/enviar_contacto.php" method="post" class="formulario-login">
                 <div class="campo-formulario">
                     <label for="correo">Correo Electronico:</label>
-                    <input type="text" id="correo" name="correo" value="<?php echo isset( $_SESSION['correo_sesion']) ? $_SESSION['correo_sesion'] : ''; ?>" required readonly>
+                    <input type="text" id="correo" name="correo" value="<?php echo isset( $_SESSION['correo_sesion']) ? $_SESSION['correo_sesion'] : ''; ?>" required>
                 </div>
                 <div class="campo-formulario">
                     <label for="titulo">Titulo:</label>

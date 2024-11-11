@@ -1,6 +1,6 @@
 <?php @session_start();
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
-    // Redirige al usuario a la página de login si no está autenticado
+    // Redirige al usuario a la pï¿½gina de login si no estï¿½ autenticado
     include("../php/cerrar_sesion.php");
     header("Location: ../index.html");
     exit();
@@ -34,10 +34,12 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             include("conexion.php");
             $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE BORRADO = 0");
             $resultado = mysqli_num_rows($consulta);
+             $I = 1;
             if ($resultado != 0) {
                 while($fila = mysqli_fetch_array($consulta)) {
-                    
+                    $_SESSION['codigo'] = $fila['CODIGO_CONCESIONARIO'];
                     echo "<div class='tarjeta-concesionario'>";
+                    echo "<img src='../img/concesionario.png' alt='Concesionario $I'>";
                     echo "<h3>" . $fila['NOMBRE'] . "</h3>";
                     echo "<p><strong>Direccion:</strong> " . $fila['DIRECCION'] . "</p>";
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
@@ -68,6 +70,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                     echo "</form>";
                     
                     echo "</div>";
+                    $I++;
                 } 
             }
             else {

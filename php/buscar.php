@@ -51,23 +51,20 @@ if ($resultado->num_rows > 0) {
 
                     echo "<form action='../html/vista_concesionario_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
-                    $resultado2 = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO FROM CONCESIONARIO WHERE CODIGO_USUARIO =" . $fila['CODIGO_CLIENTE']);
+                    $resultado2 = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO,NOMBRE FROM CONCESIONARIO WHERE CODIGO_USUARIO =" . $fila['CODIGO_CLIENTE']);
                     $fila1 = mysqli_fetch_assoc($resultado2);
                     if ($resultado2 && mysqli_num_rows($resultado2) > 0) {
-                    $codigo = $fila1['CODIGO_CONCESIONARIO'];
-                    echo "<input type='hidden' name='codigo' value='" . $codigo . "'>";
-                    echo "<input type='hidden' name='usuario' value='" . $fila['USUARIO'] . "'>";
-                    echo "<button type='submit' class='boton-reservar'>Ver concesionario</button>";
+                        echo "<p><strong>Concesionario:</strong> ".$fila1['NOMBRE']." </p>";
                     }
                     else{
-                        echo "<p><strong>Concesionario</strong> sin asignar</p>";
+                        echo "<p><strong>Concesionario:</strong> sin asignar</p>";
                     }
                     
                     echo "</div> </form> ";
 
 
                     }
-                    echo " <form action='../html/vista_cliente_admin.php' method='POST'>";
+                    echo " <form action='../html/vista_cliente.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
                     echo "<button type='submit' class='boton-reservar'>Modificar usuario</button>";

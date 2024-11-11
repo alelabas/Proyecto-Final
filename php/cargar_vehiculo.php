@@ -18,17 +18,18 @@
             $modelo = $_POST['modelo'];
             $anio = $_POST['anio'];
            
-            
             include("conexion.php");
             $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE PATENTE = '$patente'");
             $resultado = mysqli_num_rows($consulta);
             if ($resultado != 0)
             {
-                echo "El vehiculo ya se encuentra registrado en el sistema";
+                echo "<script>alert('El vehículo ya se encuentra registrado en el sistema');</script>";
             }
             else
             {
                 $consulta = mysqli_query($conexion, "INSERT INTO VEHICULO VALUES ('$patente', '$marca', '$modelo', '$anio', '$id_usuario', 0)");
+                echo "<script>alert('Vehículo registrado exitosamente');</script>";
+
             }
 
             if($_SESSION['tipo_usuario'] == 'ADMIN'){

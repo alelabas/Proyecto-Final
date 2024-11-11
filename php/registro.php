@@ -48,7 +48,7 @@
                     header("Location:../php/vista_clientes_admin.php");
                 }
                 else{
-                    header("Location:../html/vista_iniciar_sesion.html");
+                    header("Location:../html/vista_iniciar_sesion.php");
                 }
                 $_SESSION['nombre'] = '';
                 $_SESSION['apellido'] = '';

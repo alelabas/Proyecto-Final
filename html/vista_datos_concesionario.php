@@ -33,34 +33,41 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
         include("..\php\conexion.php");
         $codigo = $_SESSION['id_sesion'];
         $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_USUARIO = '$codigo'");
+        if(!($fila=mysqli_num_rows($consulta))){
+            echo "<p>Sin concesionario asignado.</p>";
+        }
+        else{
+
         $resultado = mysqli_fetch_assoc($consulta);
-        $codigo1 = $resultado['CODIGO_CONCESIONARIO']
-        ?>
+        $codigo1 = $resultado['CODIGO_CONCESIONARIO'];
+        echo'
         <section class="perfil-usuario">
             <form class="formulario-perfil" action="../php/modificar_concesionario.php" method="post">
-                <input type='hidden' name='codigo' value="<?php echo $codigo1 ?>">
+                <input type="hidden" name="codigo" value= '.$codigo1.' >
                 <div class="campo-formulario">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="<?php echo $resultado['NOMBRE']?>" required>
+                    <input type="text" id="nombre" name="nombre" value="'. $resultado['NOMBRE'].'" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="direccion">Direccion:</label>
-                    <input type="text" id="direccion" name="direccion" value="<?php echo $resultado['DIRECCION']?>" required>
+                    <input type="text" id="direccion" name="direccion" value="'. $resultado['DIRECCION'].'" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $resultado['CORREO_ELECTRONICO']?>" required>
+                    <input type="email" id="email" name="email" value="'. $resultado['CORREO_ELECTRONICO'].'" required>
                 </div>
                 
                 <div class="campo-formulario">
                     <label for="direccion">Telefono:</label>
-                    <input type="number" id="telefono" name="telefono" value="<?php echo $resultado['TELEFONO']?>" required>
+                    <input type="number" id="telefono" name="telefono" value="'. $resultado['TELEFONO'].'" required>
                 </div>
                 <button type="submit" name="accion" value="modificar" class="boton-guardar">Guardar Cambios</button>            
             </form>
-        </section>
+        </section>';
+        }
+        ?>
     </article>
     <footer>
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
