@@ -20,7 +20,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
            <ul class="lista">
                <li><a href="../php/vista_clientes_admin.php">Usuarios</a></li>
-               <li><a href="../php/vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="../php/vista_concesionarios.php">Concesionarios</a></li>
                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
         </section>
         
         <section id="turnos-asignados" class="servicios">
-            <a href="../php/vista_concesionarios_admin.php"> <h2>Concesionarios</h2> </a>
+            <a href="../php/vista_concesionarios.php"> <h2>Concesionarios</h2> </a>
             <p>Visualiza y gestiona los concesionarios.</p>
         </section>
         
