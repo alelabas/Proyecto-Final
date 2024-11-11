@@ -40,7 +40,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
         </section>
         
         <section id="mis-vehiculos" class="servicios">
-            <a href="http://localhost/Proyecto%20Final/php/vista_turnos.php"> <h2>Turnos</h2> </a>
+            <a href="../html/vista_turno_admin.php"> <h2>Turnos</h2> </a>
             <p>Visualiza y gestiona los turnos otorgados por las concesionarias.</p>
           
         </section>

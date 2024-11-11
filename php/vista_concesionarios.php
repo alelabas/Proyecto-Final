@@ -20,7 +20,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
                <li><a href="vista_clientes_admin.php">Usuarios</a></li>
-               <li><a href="vista_concesionarios_admin.php">Concesionarios</a></li>
+               <li><a href="vista_concesionarios.php">Concesionarios</a></li>
                <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
         </nav>
@@ -34,11 +34,12 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             include("conexion.php");
             $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE BORRADO = 0");
             $resultado = mysqli_num_rows($consulta);
+            $I = 1;
             if ($resultado != 0) {
                 while($fila = mysqli_fetch_array($consulta)) {
                     $_SESSION['codigo'] = $fila['CODIGO_CONCESIONARIO'];
                     echo "<div class='tarjeta-concesionario'>";
-                    echo "'<img src='http://localhost/Proyecto%20Final/img/concesionario1.jpg' alt='Concesionario 1'>";
+                    echo "<img src='../img/concesionario.png' alt='Concesionario $I'>";
                     echo "<h3>" . $fila['NOMBRE'] . "</h3>";
                     echo "<p><strong>Direccion:</strong> " . $fila['DIRECCION'] . "</p>";
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
@@ -69,6 +70,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                     echo "</form>";
                     
                     echo "</div>";
+                    $I++;
                 } 
             }
             else {
