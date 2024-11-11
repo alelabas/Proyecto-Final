@@ -33,33 +33,47 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
     <article class="pag_principal">
         <h1>Bienvenido a tu Panel de Usuario</h1>
         
-        <section id="reservar-turno" class="servicios">
-            <a href="vista_reservar_turno.php">
+        <section id="reservar-turno" class="trabajos">
+            <div>
+                <a href="vista_reservar_turno.php" class="img-referenciada"><img src="../img/reserva.png" alt="reserva"></a>
+            </div>
+            <div>
                 <h2>Reservar Turno</h2>
-                </a>
                 <p>Aquí puedes reservar un nuevo turno para tu vehículo.</p>
+            </div>
                 
         </section>
         
-        <section id="turnos-asignados" class="servicios">
-            <a href="vista_turnos_asignados.php">
+        <section id="turnos-asignados" class="trabajos">
+            <div>
+                <a href="vista_turnos_asignados.php" class="img-referenciada"><img src="../img/cita.png" alt="turno asignado"></a>
+            </div>    
+            <div>
                 <h2>Turnos Asignados</h2>
-                </a>
                 <p>Visualiza y gestiona tus turnos asignados.</p>
+            </div>
               
         </section>
         
-        <section id="mis-vehiculos" class="servicios">
-            <a href="vista_mis_vehiculos.php">
+        <section id="mis-vehiculos" class="trabajos">
+            <div>
+                <a href="vista_mis_vehiculos.php" class="img-referenciada"><img src="../img/flota.png" alt="mis vehiculos"></a>
+            </div>
+            <div>
                 <h2>Mis Vehículos</h2>
-                </a>
                 <p>Administra la información de tus vehículos registrados.</p>
+            </div>    
               
         </section>
 
-        <section class="servicios">
-            <a href="contacto.php"><h2>Contactanos</h2></a>
-            <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
+        <section class="trabajos">
+            <div>
+                <a href="contacto.php" class="img-referenciada"><img src="../img/email.png" alt="email.png"></a>
+            </div>
+            <div>
+                <h2>Contactanos</h2>
+                <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
+            </div>    
         </section>
     </article>
     

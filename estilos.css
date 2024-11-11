@@ -125,9 +125,10 @@ h1, h2 {
 .trabajos{
     display: flex;
     justify-content: center;
-    background-color: rgba(197, 197, 197, 0.5);
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
-    padding: 2rem;
+    padding: 5rem;
     margin-bottom: 2rem;
     box-shadow: 0 2px 5px rgba(0,0,5,0.3);
 }
@@ -142,9 +143,6 @@ h1, h2 {
     width: 60%;
 }
 
-.trabajos{
-    align-items: center;
-}
 
 .servicios {
     background-color: rgba(255,255,255,0.8);
@@ -675,33 +673,16 @@ button:hover {
     animation-delay: 2s;
 }
 
-.logos
+.boton-index
 {
     margin-top: 2%;
     width: 100%;
-    padding: 2%;
+    padding: 1%;
     display: flex;
     justify-content: center;
+    font-size: 25px;
 }
 
-.logos a
-{
-    margin: 1%;
-}
-
-.logos a:hover img
-{
-    transform: scale(1);
-    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-    transition: all .25s;
-    max-width: 5rem;
-}
-.logos img
-{
-	max-width: 4rem;
-	height: auto;
-	margin-right: .5%;
-}
 .error {
     color: red;
     font-weight: bold;
@@ -712,4 +693,9 @@ button:hover {
     color: green;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.img-referenciada:hover img{
+    transform: scale(1.1);
+    transition: all .5s;
 }

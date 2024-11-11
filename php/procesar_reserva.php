@@ -26,9 +26,9 @@
                 (CONCESIONARIO_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
         VALUES ('$id_concesionario' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
     if($_SESSION['tipo_usuario'] == 'USUARIO'){
-        include("../html/vista_usuario.php");
+        header("Location: ../html/vista_usuario.php");
     }
     else{
-        include("../html/vista_admin.php");
+        header("Location: ../html/vista_admin.php");
     }
 ?>

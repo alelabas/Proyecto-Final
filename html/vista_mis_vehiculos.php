@@ -16,10 +16,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
 <body id="vista-portada-dos">
     <header>
         <nav class="navegador">
-<<<<<<< Updated upstream
-=======
             <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
->>>>>>> Stashed changes
             <ul class="lista">
                 <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
                 <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
