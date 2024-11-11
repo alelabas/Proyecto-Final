@@ -21,16 +21,24 @@
             if ($resultado != 0)
             {
                 $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET MARCA = '$marca', MODELO = '$modelo', ANIO = '$anio' WHERE PATENTE = '$patente'");
+<<<<<<< Updated upstream
                 echo "Cambios realizados";
+=======
+                echo "<script>alert('Cambios realizados exitosamente');</script>";
+>>>>>>> Stashed changes
             }
             else 
             {
-                echo "Cambios no realizados";
+                echo "<script>alert('Error: No se pudieron realizar los cambios');</script>";
             }
         }
         else{
             $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET BORRADO = 1 WHERE PATENTE = '$patente'");
             $consulta = mysqli_query($conexion, "UPDATE TURNO SET ESTADO_TURNO = 'CANCELADO' WHERE VEHICULO_PATENTE = '$patente'");
+<<<<<<< Updated upstream
+=======
+            echo "<script>alert('Vehículo eliminado correctamente');</script>";
+>>>>>>> Stashed changes
         }
         if($_SESSION['tipo_usuario']=='USUARIO'){
             include("../html/vista_mis_vehiculos.php");

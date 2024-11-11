@@ -68,7 +68,11 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
                 <h3>Reserva de Turno para Mantenimiento</h3>
             </div>
             <div class="card-body">
+<<<<<<< Updated upstream
                 <form action="../php/modificar_reserva.php" method="POST">
+=======
+                <form action="../php/modificar_reserva.php" method="POST" onsubmit="return confirmarModificacion()">
+>>>>>>> Stashed changes
                 <input type="hidden" name="codigo" value= "<?php echo $codigo; ?>" >
                     <div class="form-group">
                         <label for="concesionario">Concesionario</label>
@@ -171,6 +175,14 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
+<<<<<<< Updated upstream
    
+=======
+    <script>
+    function confirmarModificacion() {
+        return confirm("¿Estás seguro de que quieres modificar el turno?");
+    }
+    </script>
+>>>>>>> Stashed changes
 </body>
 </html>

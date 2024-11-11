@@ -48,7 +48,11 @@
                     header("Location:../php/vista_clientes_admin.php");
                 }
                 else{
+<<<<<<< Updated upstream
                     header("Location:../html/vista_iniciar_sesion.html");
+=======
+                    header("Location:../html/vista_iniciar_sesion.php");
+>>>>>>> Stashed changes
                 }
                 $_SESSION['nombre'] = '';
                 $_SESSION['apellido'] = '';
