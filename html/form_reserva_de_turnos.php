@@ -6,6 +6,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
     exit();
 }
   include("../php/conexion.php");
+  include("../php/consultar_turnos.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,9 +93,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
 
                     <div class="form-group">
                         <label for="hora">Hora del Turno</label>
-                        <select id="hora" name="hora">
-                            <!-- Opciones para las horas -->
-                        </select>
+                        <select id="hora" name="hora"></select>
                     </div>
 
                     <div class="form-group">
@@ -137,60 +136,43 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
 
         document.getElementById('fecha').setAttribute('min', fechaActual);
 
-        var horaSelect = document.getElementById('hora');
-        for (var h = 8; h < 19; h++) {
-            for (var m = 0; m < 60; m += 30) {
-                var hora = String(h).padStart(2, '0');
-                var minuto = String(m).padStart(2, '0');
-                var option = document.createElement('option');
-                option.value = hora + ':' + minuto;
-                option.textContent = hora + ':' + minuto;
-                horaSelect.appendChild(option);
-            }
+        //obtener los resultados del backend
+        async function obtenerTurnosReservados(fecha){
+            const response = await fetch(`../php/consultar_turnos.php?fecha=${fecha}`);
+            const data = await response.json();
+            return data.map(turno => turno.HORA_TURNO);
         }
 
-        // Función para validar la hora
-        function validarHora() {
-            var fechaSeleccionada = document.getElementById('fecha').value;
-            var horaSelect = document.getElementById('hora');
-            
-            if (fechaSeleccionada === fechaActual) {
-                var ahora = new Date();
-                var horas = ahora.getHours();
-                var minutos = ahora.getMinutes();
+        //actualizar las opciones de horas
+        async function actualizarHora(){
+            const fechaSeleccionada = document.getElementById('fecha').value;
+            if (!fechaSeleccionada) return;
 
-                // Redondea los minutos al intervalo más cercano de 30 minutos
-                if (minutos < 30) {
-                    minutos = 30;
-                } else {
-                    minutos = 0;
-                    horas += 1;
-                }
-                
-                var horaActual = String(horas).padStart(2, '0') + ':' + String(minutos).padStart(2, '0');
+            const turnosReservados = await obtenerTurnosReservados(fechaSeleccionada);
 
-                // Deshabilita opciones de hora anteriores a la hora actual
-                for (var i = 0; i < horaSelect.options.length; i++) {
-                    if (horaSelect.options[i].value < horaActual) {
-                        horaSelect.options[i].disabled = true;
-                    } else {
-                        horaSelect.options[i].disabled = false;
+            const horaSelect = document.getElementById('hora');
+            horaSelect.innerHTML = '';
+
+            for (let h = 9; h < 19; h++){
+                for (let m = 0; m < 60; m += 30){
+                    let hora = String(h).padStart(2,'0');
+                    let minuto = String(m).padStart(2,'0');
+                    let horaFormateada = `${hora}:${minuto}`;
+
+                    //solo añadir si no esta reservada
+                    if(!turnosReservados.includes(horaFormateada)){
+                        let option = document.createElement('option');
+                        option.value = horaFormateada;
+                        option.textContent = horaFormateada;
+                        horaSelect.appendChild(option);
                     }
-                }
-            } else {
-                // Habilita todas las opciones si la fecha no es hoy
-                for (var i = 0; i < horaSelect.options.length; i++) {
-                    horaSelect.options[i].disabled = false;
                 }
             }
         }
         
         // Llama a validarHora cuando la fecha cambia
-        document.getElementById('fecha').addEventListener('change', validarHora);
+        document.getElementById('fecha').addEventListener('change', actualizarHora);
 
-        // Llama a validarHora al cargar la página para establecer correctamente el min de la hora si la fecha es hoy
-        validarHora();
-        
     </script>
 </body>
 </html>

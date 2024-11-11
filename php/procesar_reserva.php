@@ -8,8 +8,6 @@
     $patente = $_POST['vehiculo'];
     $servicio = $_POST['mantenimiento'];
 
-    //echo $hora . "<br>" . $fecha . "<br>" . $patente . "<br>" . $servicio . "<br>" . $concesionario . "<br>";
-
     $result_concesionario = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO FROM CONCESIONARIO WHERE NOMBRE = '$concesionario'");
     $row_concesionario = mysqli_fetch_assoc($result_concesionario);
     $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO'];
