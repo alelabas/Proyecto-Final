@@ -43,11 +43,7 @@
             <form action="../php/enviar_contacto.php" method="post" class="formulario-login">
                 <div class="campo-formulario">
                     <label for="correo">Correo Electronico:</label>
-<<<<<<< Updated upstream
-                    <input type="text" id="correo" name="correo" value="<?php echo isset( $_SESSION['correo_sesion']) ? $_SESSION['correo_sesion'] : ''; ?>" required readonly>
-=======
                     <input type="text" id="correo" name="correo" value="<?php echo isset( $_SESSION['correo_sesion']) ? $_SESSION['correo_sesion'] : ''; ?>" required>
->>>>>>> Stashed changes
                 </div>
                 <div class="campo-formulario">
                     <label for="titulo">Titulo:</label>

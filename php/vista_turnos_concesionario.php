@@ -1,9 +1,5 @@
 <?php @session_start();
-<<<<<<< Updated upstream
-if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
-=======
 if ($_SESSION['autenticado'] != true || $_SESSION['tipo_usuario'] !== 'ADMIN' && $_SESSION['tipo_usuario'] !== 'CONCESIONARIO' ) {
->>>>>>> Stashed changes
     // Redirige al usuario a la página de login si no está autenticado
     include("../php/cerrar_sesion.php");
     header("Location: ../index.html");
