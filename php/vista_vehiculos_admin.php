@@ -1,4 +1,11 @@
-<?php @session_start();?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +19,7 @@
         <nav class="navegador">
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
             <ul class="lista">
-               <li><a href="vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="vista_clientes_admin.php">Usuarios</a></li>
                <li><a href="vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
@@ -31,7 +38,7 @@
                 $i = 0;
                 $codigo = $_POST['codigo'];
                 include("conexion.php");
-                $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$codigo' ");
+                $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE CODIGO_PROPIETARIO = '$codigo' AND BORRADO = 0 ");
                 $resultado = mysqli_num_rows($consulta);
                 if ($resultado != 0) {
                     while($fila = mysqli_fetch_array($consulta)) {

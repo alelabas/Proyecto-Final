@@ -21,20 +21,32 @@
             if ($resultado != 0)
             {
                 $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET MARCA = '$marca', MODELO = '$modelo', ANIO = '$anio' WHERE PATENTE = '$patente'");
+<<<<<<< Updated upstream
                 echo "Cambios realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
+=======
+                echo "<script>alert('Cambios realizados exitosamente');</script>";
+>>>>>>> Stashed changes
             }
             else 
             {
-                echo "Cambios no realizados";
-                include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
+                echo "<script>alert('Error: No se pudieron realizar los cambios');</script>";
             }
         }
         else{
-            $consulta = mysqli_query($conexion, "DELETE FROM VEHICULO WHERE PATENTE = '$patente'");
-            include("C:\\xampp\htdocs\Proyecto Final\php\\vista_clientes.php");
+            $consulta = mysqli_query($conexion, "UPDATE VEHICULO SET BORRADO = 1 WHERE PATENTE = '$patente'");
+            $consulta = mysqli_query($conexion, "UPDATE TURNO SET ESTADO_TURNO = 'CANCELADO' WHERE VEHICULO_PATENTE = '$patente'");
+<<<<<<< Updated upstream
+=======
+            echo "<script>alert('Vehículo eliminado correctamente');</script>";
+>>>>>>> Stashed changes
         }
-        include("..\php\\vista_clientes_admin.php");
+        if($_SESSION['tipo_usuario']=='USUARIO'){
+            include("../html/vista_mis_vehiculos.php");
+        }
+        else{
+            include("../php/vista_clientes_admin.php");
+        }
+        
     ?>
 
     </body>

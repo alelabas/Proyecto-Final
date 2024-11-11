@@ -1,6 +1,11 @@
-<?if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
+    // Redirige al usuario a la p�gina de login si no est� autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +19,7 @@
         <nav class="navegador">
             <a href="../html/vista_admin.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
             <ul class="lista">
-               <li><a href="vista_clientes_admin.php">Clientes</a></li>
+               <li><a href="vista_clientes_admin.php">Usuarios</a></li>
                <li><a href="vista_concesionarios_admin.php">Concesionarios</a></li>
                <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
             </ul>
@@ -27,7 +32,7 @@
             <?php
             $i = 0;
             include("conexion.php");
-            $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO ");
+            $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE BORRADO = 0");
             $resultado = mysqli_num_rows($consulta);
             if ($resultado != 0) {
                 while($fila = mysqli_fetch_array($consulta)) {
@@ -38,11 +43,15 @@
                     echo "<p><strong>Direccion:</strong> " . $fila['DIRECCION'] . "</p>";
                     echo "<p><strong>Correo Electronico:</strong> " . $fila['CORREO_ELECTRONICO'] . "</p>";
                     echo "<p><strong>Telefono:</strong> " . $fila['TELEFONO'] . "</p>";
+                    if($fila['CODIGO_USUARIO'] != NULL){
                     $consulta2 = mysqli_query($conexion, "SELECT * FROM CLIENTE where CODIGO_CLIENTE = " .$fila['CODIGO_USUARIO'] );
-                    $resultado1 = mysqli_num_rows($consulta);
-                    if($resultado1 != 0){
                     $fila1 = mysqli_fetch_array($consulta2);
                     
+                        echo "<p><strong>Usuario asignado:</strong> " . $fila1['USUARIO'] . "</p>";
+                    }
+                    else{
+                        echo "<p><strong>Usuario no asignado</strong></p>";
+                    }
                     echo "<form action='vista_turnos_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CONCESIONARIO'] . "'>";

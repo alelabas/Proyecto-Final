@@ -1,4 +1,11 @@
-<?php @session_start()?>
+<?php @session_start();
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'USUARIO' ) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,11 +20,12 @@
             <a href="vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow"  height="80"></a>
 
             <ul class="lista">
-                <li><a href="vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
+                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
+                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
                 <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-                <li><a href="vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="../html/vista_perfil.php"><i class="fa-regular fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -52,7 +60,6 @@
         <section class="servicios">
             <a href="contacto.php"><h2>Contactanos</h2></a>
             <p>¿Tienes alguna pregunta o sugerencia? ¡Estamos aquí para ayudarte!</p>
-            <a href="contacto.php">Contactar</a>
         </section>
     </article>
     

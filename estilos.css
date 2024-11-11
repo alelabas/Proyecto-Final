@@ -114,7 +114,6 @@ footer {
     color: #3498db;
 }
 
-
 h1, h2 {
     color: #0f0f0f;
     margin-bottom: 1rem;
@@ -133,7 +132,6 @@ h1, h2 {
     box-shadow: 0 2px 5px rgba(0,0,5,0.3);
 }
 
-
 .trabajos div{
     margin: 5%;
     text-align: center;
@@ -147,7 +145,6 @@ h1, h2 {
 .trabajos{
     align-items: center;
 }
-
 
 .servicios {
     background-color: rgba(255,255,255,0.8);
@@ -166,7 +163,6 @@ h1, h2 {
     margin-bottom: 0.5rem;
 }
 
-
 ul a {
     display: inline-block;
     background-color: #3498db;
@@ -181,12 +177,12 @@ ul a:hover {
     background-color: #2980b9;
 }
 
-
 .concesionarios {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 .tarjeta-concesionario {
     background-color: #fff;
     border-radius: 5px;
@@ -195,18 +191,22 @@ ul a:hover {
     padding: 1rem;
     width: 300px;
 }
+
 .tarjeta-concesionario img {
     width: 100%;
     height: auto;
     border-radius: 5px;
 }
+
 .tarjeta-concesionario h3 {
     color: #2c3e50;
     margin-top: 1rem;
 }
+
 .tarjeta-concesionario p {
     color: #7f8c8d;
 }
+
 .boton-reservar {
     background-color: #3498db;
     border: none;
@@ -220,9 +220,11 @@ ul a:hover {
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
+
 .boton-reservar:hover {
     background-color: #2980b9;
 }
+
 .turnos-asignados {
     display: flex;
     flex-wrap: wrap;
@@ -450,11 +452,95 @@ ul a:hover {
     text-decoration: underline;
 }
 
-.alert {
-    background-color: #4CAF50;
+div .reserva-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.reserva-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background: #3498db;
     color: white;
-    padding: 20px 40px;
-    text-align: center;
+    padding: 20px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.contenido-modal {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     animation: fadeOut 3s forwards;
@@ -480,10 +566,10 @@ div .reserva-container {
     padding: 20px;
 }
 
-    .card-header h3 {
-        margin: 0;
-        font-size: 24px;
-    }
+.card-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
 
 .card-body {
     padding: 30px;
@@ -492,6 +578,7 @@ div .reserva-container {
 .form-group {
     margin-bottom: 20px;
 }
+
 label {
     display: block;
     margin-bottom: 8px;
@@ -508,11 +595,11 @@ input, select {
     color: #333;
 }
 
-    input:focus, select:focus {
-        outline: none;
-        border-color: #3498db;
-        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
-    }
+input:focus, select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
 
 button {
     background: #3498db;
@@ -614,4 +701,15 @@ button:hover {
 	max-width: 4rem;
 	height: auto;
 	margin-right: .5%;
+}
+.error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
 }

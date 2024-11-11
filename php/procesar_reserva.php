@@ -8,13 +8,13 @@
     $patente = $_POST['vehiculo'];
     $servicio = $_POST['mantenimiento'];
 
-    echo $hora . "<br>" . $fecha . "<br>" . $patente . "<br>" . $servicio . "<br>" . $concesionario . "<br>";
+    //echo $hora . "<br>" . $fecha . "<br>" . $patente . "<br>" . $servicio . "<br>" . $concesionario . "<br>";
 
     $result_concesionario = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO FROM CONCESIONARIO WHERE NOMBRE = '$concesionario'");
     $row_concesionario = mysqli_fetch_assoc($result_concesionario);
     $id_concesionario = $row_concesionario['CODIGO_CONCESIONARIO'];
 
-    $id_cliente = $_SESSION['id_sesion'];
+    
 
     $result_servicio = mysqli_query($conexion, "SELECT CODIGO_SERVICIO FROM mantenimiento WHERE DESCRIPCION = '$servicio'");
     $row_servicio = mysqli_fetch_assoc($result_servicio);
@@ -23,8 +23,12 @@
     $estado = 'PENDIENTE';
     
     mysqli_query($conexion, "INSERT INTO turno 
-                (CONCESIONARIO_CODIGO, CLIENTE_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
-        VALUES ('$id_concesionario' , '$id_cliente' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
-    
-    header("Location:../html/vista_turnos_asignados.php?turno_reservado=true");
-    exit();
+                (CONCESIONARIO_CODIGO, MANT_CODIGO_SERVICIO, FECHA_TURNO, HORA_TURNO, ESTADO_TURNO, VEHICULO_PATENTE) 
+        VALUES ('$id_concesionario' , '$id_servicio' , '$fecha' , '$hora' , '$estado' , '$patente')");
+    if($_SESSION['tipo_usuario'] == 'USUARIO'){
+        include("../html/vista_usuario.php");
+    }
+    else{
+        include("../html/vista_admin.php");
+    }
+?>

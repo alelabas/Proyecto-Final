@@ -2,7 +2,6 @@
 <html>
     <head>
     </head>
-    <title>Registro</title>
 
     <body>
         <?php
@@ -11,11 +10,12 @@
 
 // Crear la consulta SQL con el filtro
 $sql = "SELECT * FROM cliente WHERE 
-        nombres LIKE '$buscar%' OR 
+        (nombres LIKE '$buscar%' OR 
         apellidos LIKE '$buscar%' OR
         usuario LIKE '$buscar%' OR
         correo_electronico LIKE '$buscar%' OR 
-        telefono LIKE '$buscar%'";
+        telefono LIKE '$buscar%')
+        AND (BORRADO = 0)";
 
 $resultado = $conexion->query($sql);
 
@@ -45,6 +45,28 @@ if ($resultado->num_rows > 0) {
                     echo "<button type='submit' class='boton-reservar'>Ver vehiculos</button>";
                     echo "</div> </form> ";
 
+                    }
+
+                    else if($fila['TIPO_CLIENTE'] == 'CONCESIONARIO'){
+
+                    echo "<form action='../html/vista_concesionario_admin.php' method='POST'>";
+                    echo "<div class='campo-formulario'> ";
+                    $resultado2 = mysqli_query($conexion, "SELECT CODIGO_CONCESIONARIO FROM CONCESIONARIO WHERE CODIGO_USUARIO =" . $fila['CODIGO_CLIENTE']);
+                    $fila1 = mysqli_fetch_assoc($resultado2);
+                    if ($resultado2 && mysqli_num_rows($resultado2) > 0) {
+                    $codigo = $fila1['CODIGO_CONCESIONARIO'];
+                    echo "<input type='hidden' name='codigo' value='" . $codigo . "'>";
+                    echo "<input type='hidden' name='usuario' value='" . $fila['USUARIO'] . "'>";
+                    echo "<button type='submit' class='boton-reservar'>Ver concesionario</button>";
+                    }
+                    else{
+                        echo "<p><strong>Concesionario</strong> sin asignar</p>";
+                    }
+                    
+                    echo "</div> </form> ";
+
+
+                    }
                     echo " <form action='../html/vista_cliente_admin.php' method='POST'>";
                     echo "<div class='campo-formulario'> ";
                     echo "<input type='hidden' name='codigo' value='" . $fila['CODIGO_CLIENTE'] . "'>";
@@ -58,7 +80,7 @@ if ($resultado->num_rows > 0) {
                 echo"<div class='tarjeta-vehiculo nuevo-vehiculo'>";
                 echo"<i class='fa-solid fa-plus'></i>";
                 echo"<h3>Agregar Nuevo Cliente</h3>";
-                echo"<a href='../html/vista_cargar_cliente_admin.php' class='boton-agregar'>Agregar</a>";
+                echo"<a href='../html/vista_registrarte.php' class='boton-agregar'>Agregar</a>";
                 echo"</div>";
 
 }

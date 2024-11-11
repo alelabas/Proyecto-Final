@@ -1,5 +1,11 @@
 <?php @session_start();
-  include("../php/conexion.php");
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
+    // Redirige al usuario a la página de login si no está autenticado
+    include("../php/cerrar_sesion.php");
+    header("Location: ../index.html");
+    exit();
+}
+include("../php/conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,14 +18,36 @@
 <body id="vista-portada-tres">
     <header>
         <nav class="navegador">
-            <a href="../html/vista_usuario.php"><img id="inicio" src="../img/icono.webp" alt="ServiNow" height="80"></a>
-            <ul class="lista">
-                <li><a href="../html/vista_reservar_turno.php">Reservar Turno</a></li>
-                <li><a href="../html/vista_turnos_asignados.php">Turnos Asignados</a></li>
-                <li><a href="../html/vista_mis_vehiculos.php">Mis Vehículos</a></li>
-                <li><a href="../php/cerrar_sesion.php">Cerrar sesion</a></li>
-                <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
-            </ul>
+        <?php if($_SESSION['tipo_usuario'] == 'USUARIO' ){
+            
+            echo"<a href='../html/vista_usuario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
+            echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
+            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+            echo'<li><a href="../html/contacto.php">Contactanos</a></li>';
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else if($_SESSION['tipo_usuario'] == 'CONCESIONARIO' ){
+            echo"<a href='../html/vista_concesionario.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../html/vista_datos_concesionario.php'>Mi concesionario</a></li>";
+            echo"   <li><a href='../php/vista_turnos_concesionario.php'>Turnos</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";
+            echo"</ul> ";
+        }
+        else{
+            echo"<a href='../html/vista_admin.php'><img id='inicio' src='../img/icono.webp' alt='ServiNow'  height='80'></a>";
+            echo"<ul class='lista'>";
+            echo"   <li><a href='../php/vista_clientes_admin.php'>Usuarios</a></li>";
+            echo"   <li><a href='../php/vista_concesionarios_admin.php'>Concesionarios</a></li>";
+            echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
+            echo"</ul> ";
+        }
+        ?>
         </nav>
     </header>
     
@@ -57,7 +85,7 @@
                 </div>
                 
                 <button type="submit" class="boton-guardar">Guardar Cambios</button>
-                <a href="../php/cerrar_sesion.php">Cerrar Sesion</a>
+                
             </form>
         </section>
     </article>
