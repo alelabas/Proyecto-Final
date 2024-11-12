@@ -68,11 +68,8 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
                 <h3>Reserva de Turno para Mantenimiento</h3>
             </div>
             <div class="card-body">
-<<<<<<< Updated upstream
-                <form action="../php/modificar_reserva.php" method="POST">
-=======
                 <form action="../php/modificar_reserva.php" method="POST" onsubmit="return confirmarModificacion()">
->>>>>>> Stashed changes
+
                 <input type="hidden" name="codigo" value= "<?php echo $codigo; ?>" >
                     <div class="form-group">
                         <label for="concesionario">Concesionario</label>

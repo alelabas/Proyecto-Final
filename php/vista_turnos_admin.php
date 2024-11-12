@@ -69,7 +69,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                         echo "<button type='submit' class='boton-reservar'>Modificar turno</button>";
                         echo "</div>";
                         $codigo_turno = $fila['CODIGO_TURNO'];
-                        echo "<a href='#' onclick='confirmarCancelacion('$codigo_turno') class='boton-cancelar'>Cancelar Turno</a>";
+                        echo "<a href='#' onclick='confirmarCancelacion($codigo_turno)' class='boton-cancelar'>Cancelar Turno</a>";
                         echo "</form>";
                         echo "</div>";
                     } 

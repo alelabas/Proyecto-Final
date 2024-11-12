@@ -71,9 +71,6 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                         }
                         echo "<option value= NULL >Sin asignar</option>";
                         $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = 'CONCESIONARIO' AND BORRADO = 0");
-                        $fila = mysqli_fetch_array($consulta);
-                        $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO ");
-                        $resultado = mysqli_fetch_array($consulta1);
                         while($fila = mysqli_fetch_array($consulta)) {
                             $consulta1 = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE CODIGO_USUARIO =". $fila['CODIGO_CLIENTE'] );
                             if(!($resultado = mysqli_num_rows($consulta1)) ){
