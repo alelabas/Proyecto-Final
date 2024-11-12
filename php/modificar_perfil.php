@@ -24,14 +24,14 @@
         {
             $consulta = mysqli_query($conexion, "UPDATE CLIENTE SET NOMBRES = '$nombre', APELLIDOS = '$apellido', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono WHERE USUARIO = '$usuario' AND CONTRASEÑA = '$contraseña'");
             echo "Cambios realizados correctamente";
-            include("C:\\xampp\htdocs\Proyecto Final\html\\vista_perfil.php");
+            include("../html/vista_perfil.php");
         }
         else 
         {
             echo "Cambios no realizados";
-            include("C:\\xampp\htdocs\Proyecto Final\html\\vista_perfil.html");    
+            include("../html/vista_perfil.html");    
         }
-        include("..\html\\vista_perfil.php");
+        
     ?>
 
     </body>

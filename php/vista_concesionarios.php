@@ -34,7 +34,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             include("conexion.php");
             $consulta = mysqli_query($conexion, "SELECT * FROM CONCESIONARIO WHERE BORRADO = 0");
             $resultado = mysqli_num_rows($consulta);
-            $I = 1;
+             $I = 1;
             if ($resultado != 0) {
                 while($fila = mysqli_fetch_array($consulta)) {
                     $_SESSION['codigo'] = $fila['CODIGO_CONCESIONARIO'];

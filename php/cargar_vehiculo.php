@@ -18,7 +18,6 @@
             $modelo = $_POST['modelo'];
             $anio = $_POST['anio'];
            
-            
             include("conexion.php");
             $consulta = mysqli_query($conexion, "SELECT * FROM VEHICULO WHERE PATENTE = '$patente'");
             $resultado = mysqli_num_rows($consulta);

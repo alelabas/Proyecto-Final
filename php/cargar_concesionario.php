@@ -35,7 +35,7 @@
                     exit;
                 }
                 else{
-                    $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO, CODIGO_USUARIO) VALUES ('$nombre', '$direccion', '$telefono', '$email','$usuario')");
+                    $consulta = mysqli_query($conexion, "INSERT INTO CONCESIONARIO (NOMBRE, DIRECCION, TELEFONO, CORREO_ELECTRONICO, CODIGO_USUARIO) VALUES ('$nombre', '$direccion', '$telefono', '$email',$usuario)");
                     header("Location:../php/vista_concesionarios_admin.php");
                     $_SESSION['nombre1'] = '';
                     $_SESSION['direccion1'] = '';

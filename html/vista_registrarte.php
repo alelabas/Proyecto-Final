@@ -26,7 +26,7 @@
             <ul class="lista">
                 <li><a href="../html/vista_registrarte.php">Registrarse</a></li>
                 <li><a href="../html/vista_iniciar_sesion.php">Iniciar sesión</a></li>
-                <li><a href="html/contacto.php">Contactanos</a></li>
+                <li><a href="../html/contacto.php">Contactanos</a></li>
             </ul>';
         }
         ?>

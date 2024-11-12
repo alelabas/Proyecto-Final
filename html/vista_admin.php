@@ -38,12 +38,6 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             <a href="../php/vista_concesionarios.php"> <h2>Concesionarios</h2> </a>
             <p>Visualiza y gestiona los concesionarios.</p>
         </section>
-        
-        <section id="mis-vehiculos" class="servicios">
-            <a href="../html/vista_turno_admin.php"> <h2>Turnos</h2> </a>
-            <p>Visualiza y gestiona los turnos otorgados por las concesionarias.</p>
-          
-        </section>
     </article>
     
     <footer>
