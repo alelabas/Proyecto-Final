@@ -52,7 +52,7 @@ include('../php/conexion.php');
                         $marca = $vehiculo['MARCA'];
                         $modelo = $vehiculo['MODELO'];
                         
-                        $turnos_usuario = mysqli_query($conexion, "SELECT * FROM turno WHERE VEHICULO_PATENTE = '$patente' AND ESTADO_TURNO != 'CANCELADO'");
+                        $turnos_usuario = mysqli_query($conexion, "SELECT * FROM turno WHERE VEHICULO_PATENTE = '$patente' AND ESTADO_TURNO != 'CANCELADO' ORDER BY FECHA_TURNO DESC");
 
                         while($turno = mysqli_fetch_assoc($turnos_usuario)){
                             $fecha = $turno['FECHA_TURNO'];
