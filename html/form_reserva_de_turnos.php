@@ -148,6 +148,9 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
             }
         }
 
+        nombreConcesionario = document.getElementById('concesionario').value;
+        console.log('concesionario: ', nombreConcesionario)
+
         // Función para validar la hora
         function validarHora() {
             var fechaSeleccionada = document.getElementById('fecha').value;
@@ -183,10 +186,64 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
                 }
             }
         }
-        
-        // Llama a validarHora cuando la fecha cambia
+
+        //Validar turnos ya ocupados
+        //obtener los resultados del backend
+        async function obtenerTurnosReservados(fecha){
+            const response = await fetch(`../php/consultar_turnos.php?fecha=${fecha}&concesionario=${nombreConcesionario}`);
+            const data = await response.json();
+            console.log('resultados: ', data);
+            return data.map(turno => turno[2]);
+            console.log('datos: ', data.map(turno => turno[2]));
+        }
+
+        async function actualizarHoras(fecha) {
+            const turnosReservados = await obtenerTurnosReservados(fecha);
+            console.log('Turnos Reservados:', turnosReservados); // Verifica las horas reservadas
+
+            // Crear un array con todas las horas posibles (por ejemplo, de 08:00 a 18:00 con intervalos de 30 minutos)
+            const todasLasHoras = [];
+            for (var h = 8; h < 19; h++) {
+            for (var m = 0; m < 60; m += 30) {
+                var hora = String(h).padStart(2, '0');
+                var minuto = String(m).padStart(2, '0');
+                var horas = hora + ":" + minuto;
+                todasLasHoras.push(horas);
+                }
+            }
+            console.log('Todas las horas:', todasLasHoras); // Verifica las horas generadas
+
+            // Filtrar las horas disponibles (eliminando las reservadas)
+            const horasDisponibles = todasLasHoras.filter(hora => !turnosReservados.includes(hora));
+            console.log('Horas disponibles:', horasDisponibles); // Verifica las horas disponibles
+
+            // Limpiar las opciones actuales del <select>
+            horaSelect.innerHTML = '';
+
+            // Añadir las horas disponibles al <select>
+            horasDisponibles.forEach(hora => {
+                const option = document.createElement('option');
+                option.value = hora;
+                option.textContent = hora;
+                horaSelect.appendChild(option);
+            });
+        }
+
+        document.getElementById('fecha').addEventListener('change', (e) => { 
+            const fechaSeleccionada = e.target.value;
+            console.log('Fecha seleccionada:', fechaSeleccionada); // Verifica que la fecha se capture correctamente
+            actualizarHoras(fechaSeleccionada);
+        });
+
+        document.getElementById('concesionario').addEventListener('change', (c) =>{
+            nombreConcesionario = c.target.value;
+            console.log('Concesionario: ', nombreConcesionario);
+            const fechaSeleccionada = document.getElementById('fecha').value;
+            actualizarHoras(fechaSeleccionada);  
+        })
+
         document.getElementById('fecha').addEventListener('change', validarHora);
-        // Llama a validarHora al cargar la página para establecer correctamente el min de la hora si la fecha es hoy
+
         validarHora();
 
     </script>
