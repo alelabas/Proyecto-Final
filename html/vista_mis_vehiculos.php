@@ -56,6 +56,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                         echo"<p><strong>Patente:</strong> $vehiculo[0]</p>";
                     ?>
                 <a href="../html/vista_vehiculo_admin.php?patente=<?php echo $vehiculo[0] ?>" class="boton-editar">Editar</a>
+                <a href="#" class="boton-editar" id="boton-historial">Ver Historial</a>
                 </div>
                     <?php
                     }
@@ -66,6 +67,42 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                 <i class="fa-solid fa-plus"></i>
                 <h3>Agregar Nuevo Vehículo</h3>
                 <a href="#" class="boton-editar">Agregar</a>
+            </div>
+
+            <div id="modalVerHistorial" class="modal">
+                <div class="contenido-modal">
+                    <span class="cerrar-modal">&times;</span>
+                    <h2>Historial</h2>
+                    <?php
+                    include("../php/conexion.php");
+                    $consulta = mysqli_query($conexion,"SELECT c.NOMBRE, t.FECHA_TURNO, m.DESCRIPCION  FROM turno t 
+                                                                        JOIN vehiculo v ON t.VEHICULO_PATENTE = v.PATENTE
+                                                                        JOIN concesionario c ON c.CODIGO_CONCESIONARIO = t.CONCESIONARIO_CODIGO
+                                                                        JOIN mantenimiento m ON m.CODIGO_SERVICIO = t.MANT_CODIGO_SERVICIO
+                                                                        WHERE v.CODIGO_PROPIETARIO = '$id_usuario';");
+
+                    $resultado = mysqli_num_rows($consulta);
+                    $fechaActual = date('Y-m-d');
+                    if ($resultado != 0)
+                    {
+                        $respuesta = mysqli_fetch_all($consulta);
+                        foreach($respuesta as $turno)
+                        {
+                            if ($turno[1] < $fechaActual){
+
+                                echo '
+                                <h3>Concesionario: ' . $turno[0] . '</h3>
+                                <p>Fecha Turno: '. $turno[1] . '</p>
+                                <p>Trabajo realizado: ' . $turno[2] . '</p>
+                                ';
+                            }
+                            else{
+                                echo '<h3>No se realizo ningun servicio</h3>';
+                            }
+                        }
+                    }
+                    ?>
+                </div>
             </div>
 
             <div id="modalAgregarVehiculo" class="modal">
@@ -105,10 +142,16 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             var modal = document.getElementById('modalAgregarVehiculo');
             var botonAgregar = document.querySelector('.nuevo-vehiculo .boton-editar');
             var cerrarModal = document.querySelector('.cerrar-modal');
+           // var modalHistorial = document.getElementById('modalHistorial');
+           // var botonHistorial = document.getElementById('boton-historial');
 
             botonAgregar.onclick = function() {
                 modal.style.display = "block";
             }
+
+          //  botonHistorial.onclick = function(){
+            //    modalHistorial.style.display = "block";
+           // }
 
             cerrarModal.onclick = function() {
                 modal.style.display = "none";
