@@ -151,42 +151,6 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
         nombreConcesionario = document.getElementById('concesionario').value;
         console.log('concesionario: ', nombreConcesionario)
 
-        // Función para validar la hora
-        function validarHora() {
-            var fechaSeleccionada = document.getElementById('fecha').value;
-            var horaSelect = document.getElementById('hora');
-            
-            if (fechaSeleccionada === fechaActual) {
-                var ahora = new Date();
-                var horas = ahora.getHours();
-                var minutos = ahora.getMinutes();
-
-                // Redondea los minutos al intervalo más cercano de 30 minutos
-                if (minutos < 30) {
-                    minutos = 30;
-                } else {
-                    minutos = 0;
-                    horas += 1;
-                }
-                
-                var horaActual = String(horas).padStart(2, '0') + ':' + String(minutos).padStart(2, '0');
-
-                // Deshabilita opciones de hora anteriores a la hora actual
-                for (var i = 0; i < horaSelect.options.length; i++) {
-                    if (horaSelect.options[i].value < horaActual) {
-                        horaSelect.options[i].disabled = true;
-                    } else {
-                        horaSelect.options[i].disabled = false;
-                    }
-                }
-            } else {
-                // Habilita todas las opciones si la fecha no es hoy
-                for (var i = 0; i < horaSelect.options.length; i++) {
-                    horaSelect.options[i].disabled = false;
-                }
-            }
-        }
-
         //Validar turnos ya ocupados
         //obtener los resultados del backend
         async function obtenerTurnosReservados(fecha){
@@ -204,17 +168,35 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
             // Crear un array con todas las horas posibles (por ejemplo, de 08:00 a 18:00 con intervalos de 30 minutos)
             const todasLasHoras = [];
             for (var h = 8; h < 19; h++) {
-            for (var m = 0; m < 60; m += 30) {
-                var hora = String(h).padStart(2, '0');
-                var minuto = String(m).padStart(2, '0');
-                var horas = hora + ":" + minuto;
-                todasLasHoras.push(horas);
+                for (var m = 0; m < 60; m += 30) {
+                    var hora = String(h).padStart(2, '0');
+                    var minuto = String(m).padStart(2, '0');
+                    var horas = hora + ":" + minuto;
+                    todasLasHoras.push(horas);
                 }
             }
             console.log('Todas las horas:', todasLasHoras); // Verifica las horas generadas
 
-            // Filtrar las horas disponibles (eliminando las reservadas)
-            const horasDisponibles = todasLasHoras.filter(hora => !turnosReservados.includes(hora));
+            // Obtener la fecha y la hora actuales
+            const now = new Date();
+            const fechaActual = now.toISOString().split('T')[0];
+            const horaActual = now.getHours();
+            const minutoActual = now.getMinutes();
+
+            console.log('Fecha actual:', fechaActual);
+            console.log('Hora actual:', `${horaActual}:${minutoActual}`);
+
+            // Filtrar las horas disponibles (eliminando las reservadas y las horas pasadas si es el mismo día)
+            const horasDisponibles = todasLasHoras.filter(hora => {
+                if (fecha === fechaActual) {
+                    const [horaHora, horaMinuto] = hora.split(':').map(Number);
+                    if (horaHora < horaActual || (horaHora === horaActual && horaMinuto < minutoActual)) {
+                        return false;
+                    }
+                }
+                return !turnosReservados.includes(hora);
+            });
+
             console.log('Horas disponibles:', horasDisponibles); // Verifica las horas disponibles
 
             // Limpiar las opciones actuales del <select>
@@ -242,9 +224,6 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true ) {
             actualizarHoras(fechaSeleccionada);  
         })
 
-        document.getElementById('fecha').addEventListener('change', validarHora);
-
-        validarHora();
 
     </script>
 </body>
