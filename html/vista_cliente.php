@@ -34,6 +34,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
         <?php 
         include("..\php\conexion.php");
         $codigo = $_POST['codigo'];
+        // sujeto a modificacion si la contraseña se guarda en la tabla concesionario.
         $consulta = mysqli_query($conexion, "SELECT * FROM CLIENTE WHERE CODIGO_CLIENTE = '$codigo'");
         $resultado = mysqli_fetch_array($consulta);
         ?>

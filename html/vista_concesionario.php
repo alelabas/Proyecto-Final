@@ -1,7 +1,7 @@
 <?php @session_start();
 
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'CONCESIONARIO' ) {
-    // Redirige al usuario a la página de login si no está autenticado
+    // Redirige al usuario a la pï¿½gina de login si no estï¿½ autenticado
 
     include("../php/cerrar_sesion.php");
     header("Location: ../index.html");

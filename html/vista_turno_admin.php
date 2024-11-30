@@ -172,14 +172,100 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
         <p>&copy; 2024 ServiNow. Todos los derechos reservados.</p>
     </footer>
     <script src="https://kit.fontawesome.com/7b8a06bdc2.js" crossorigin="anonymous"></script>
-<<<<<<< Updated upstream
-   
-=======
     <script>
-    function confirmarModificacion() {
-        return confirm("¿Estás seguro de que quieres modificar el turno?");
-    }
+        var hoy = new Date();
+        var dia = String(hoy.getDate()).padStart(2,0);
+        var mes = String(hoy.getMonth() + 1).padStart(2,0);
+        var anio = String(hoy.getFullYear());
+
+        var fechaActual = anio + '-' + mes + '-' + dia;
+
+        document.getElementById('fecha').setAttribute('min', fechaActual);
+
+        var horaSelect = document.getElementById('hora');
+        for (var h = 8; h < 19; h++) {
+            for (var m = 0; m < 60; m += 30) {
+                var hora = String(h).padStart(2, '0');
+                var minuto = String(m).padStart(2, '0');
+                var option = document.createElement('option');
+                option.value = hora + ':' + minuto;
+                option.textContent = hora + ':' + minuto;
+                horaSelect.appendChild(option);
+            }
+        }
+
+        nombreConcesionario = document.getElementById('concesionario').value;
+        console.log('concesionario: ', nombreConcesionario)
+
+        //Validar turnos ya ocupados
+        //obtener los resultados del backend
+        async function obtenerTurnosReservados(fecha){
+            const response = await fetch(`../php/consultar_turnos.php?fecha=${fecha}&concesionario=${nombreConcesionario}`);
+            const data = await response.json();
+            console.log('resultados: ', data);
+            return data.map(turno => turno[2]);
+            console.log('datos: ', data.map(turno => turno[2]));
+        }
+
+        async function actualizarHoras(fecha) {
+            const turnosReservados = await obtenerTurnosReservados(fecha);
+            console.log('Turnos Reservados:', turnosReservados); 
+
+            const todasLasHoras = [];
+            for (var h = 8; h < 19; h++) {
+                for (var m = 0; m < 60; m += 30) {
+                    var hora = String(h).padStart(2, '0');
+                    var minuto = String(m).padStart(2, '0');
+                    var horas = hora + ":" + minuto;
+                    todasLasHoras.push(horas);
+                }
+            }
+            console.log('Todas las horas:', todasLasHoras);
+
+            const now = new Date();
+            const fechaActual = now.toISOString().split('T')[0];
+            const horaActual = now.getHours();
+            const minutoActual = now.getMinutes();
+
+            console.log('Fecha actual:', fechaActual);
+            console.log('Hora actual:', `${horaActual}:${minutoActual}`);
+
+            // Filtrar las horas disponibles
+            const horasDisponibles = todasLasHoras.filter(hora => {
+                if (fecha === fechaActual) {
+                    const [horaHora, horaMinuto] = hora.split(':').map(Number);
+                    if (horaHora < horaActual || (horaHora === horaActual && horaMinuto < minutoActual)) {
+                        return false;
+                    }
+                }
+                return !turnosReservados.includes(hora);
+            });
+
+            console.log('Horas disponibles:', horasDisponibles); 
+
+            horaSelect.innerHTML = '';
+
+            horasDisponibles.forEach(hora => {
+                const option = document.createElement('option');
+                option.value = hora;
+                option.textContent = hora;
+                horaSelect.appendChild(option);
+            });
+        }
+
+        document.getElementById('fecha').addEventListener('change', (e) => { 
+            const fechaSeleccionada = e.target.value;
+            console.log('Fecha seleccionada:', fechaSeleccionada);
+            actualizarHoras(fechaSeleccionada);
+        });
+
+        document.getElementById('concesionario').addEventListener('change', (c) =>{
+            nombreConcesionario = c.target.value;
+            console.log('Concesionario: ', nombreConcesionario);
+            const fechaSeleccionada = document.getElementById('fecha').value;
+            actualizarHoras(fechaSeleccionada);  
+        })
+
     </script>
->>>>>>> Stashed changes
 </body>
 </html>

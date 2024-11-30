@@ -24,7 +24,7 @@ include("../php/conexion.php");
             echo"<ul class='lista'>";
             echo"   <li><a href='../html/vista_reservar_turno.php'>Reservar Turno</a></li>";
             echo"   <li><a href='../html/vista_turnos_asignados.php'>Turnos Asignados</a></li>";
-            echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
+              echo"   <li><a href='../html/vista_mis_vehiculos.php'>Mis Vehículos</a></li>";
             echo'<li><a href="../html/contacto.php">Contactanos</a></li>';
             echo"   <li><a href='../php/cerrar_sesion.php'>Cerrar sesion</a></li>";
             echo"   <li><a href='../html/vista_perfil.php'><i class='fa-regular fa-user'></i></a></li>";

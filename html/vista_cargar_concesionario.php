@@ -1,4 +1,5 @@
 <?php @session_start();
+include("..\php\conexion.php");
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !isset($_SESSION['autenticado']) || $_SESSION['tipo_usuario'] !== 'ADMIN' ) {
     // Redirige al usuario a la página de login si no está autenticado
     include("../php/cerrar_sesion.php");
@@ -56,10 +57,9 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                 <label for="codigo_usuario">Usuario asignado:</label>
                 <select id="codigo_usuario" name="codigo_usuario" value="<?php echo isset($_SESSION['codigo_usuario1']) ? $_SESSION['codigo_usuario1'] : ''; ?>"required>
                 <?php 
-                include('../php/conexion.php');
-                    $consulta = mysqli_query($conexion, 'SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = "CONCESIONARIO" ' );
+                        $consulta = mysqli_query($conexion, 'SELECT * FROM CLIENTE WHERE TIPO_CLIENTE = "CONCESIONARIO" ' );
                         while($fila = mysqli_fetch_array($consulta)) {
-                            echo "<option value= '" . $fila['CODIGO_CLIENTE'] . "' >" . $fila['USUARIO'] ." </option>";
+                        echo "<option value= '" . $fila['CODIGO_CLIENTE'] . "' >" . $fila['USUARIO'] ." </option>";
                         }
                 ?>
                 </select>

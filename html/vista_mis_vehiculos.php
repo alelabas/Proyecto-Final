@@ -46,21 +46,18 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
                     $respuesta = mysqli_fetch_all($consulta);
                     foreach($respuesta as $vehiculo)
                     {
-            ?>
-            <div class="tarjeta-vehiculo">
-                        
-                
-                    <?php 
-                        echo"<h3>$vehiculo[1] $vehiculo[2]</h3>";
-                        echo"<p><strong>Año:</strong> $vehiculo[3]</p>";
-                        echo"<p><strong>Patente:</strong> $vehiculo[0]</p>";
-                    ?>
-                <a href="../html/vista_vehiculo_admin.php?patente=<?php echo $vehiculo[0] ?>" class="boton-editar">Editar</a>
-                </div>
-                    <?php
+                        echo'
+                        <div class="tarjeta-vehiculo">
+                        <h3>'.$vehiculo[1] .' ' . $vehiculo[2].'</h3>
+                        <p><strong>Año:</strong> '.$vehiculo[3].'</p>
+                        <p><strong>Patente:</strong> '.$vehiculo[0].'</p>
+                        <a href="../html/vista_vehiculo_admin.php?patente='.$vehiculo[0].'" class="boton-editar">Editar</a>
+                        <a href="../html/ver_historial.php?patente='.$vehiculo[0].'" class="boton-editar" id="boton-historial">Ver Historial</a>
+                        </div>
+                        ';
                     }
                 }
-                    ?>
+            ?>
                           
             <div class="tarjeta-vehiculo nuevo-vehiculo">
                 <i class="fa-solid fa-plus"></i>
@@ -105,6 +102,7 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true && !is
             var modal = document.getElementById('modalAgregarVehiculo');
             var botonAgregar = document.querySelector('.nuevo-vehiculo .boton-editar');
             var cerrarModal = document.querySelector('.cerrar-modal');
+
 
             botonAgregar.onclick = function() {
                 modal.style.display = "block";
