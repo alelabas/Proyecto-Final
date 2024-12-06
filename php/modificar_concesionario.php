@@ -30,7 +30,7 @@
             {
                 $consulta = mysqli_query($conexion, "UPDATE CONCESIONARIO SET NOMBRE = '$nombre', DIRECCION = '$direccion', CORREO_ELECTRONICO = '$email', TELEFONO = $telefono , CODIGO_USUARIO = $codigo_usuario WHERE CODIGO_CONCESIONARIO = '$codigo'");
                 if ($consulta) {
-                    echo "Cambios realizados correctamente";
+                    echo "<script>alert('Cambios realizados correctamente');</script>";
                 } 
                 else {
                     echo "Error al realizar cambios: " . mysqli_error($conexion);
